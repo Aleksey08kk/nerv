@@ -1,0 +1,317 @@
+@font-face {
+	font-family: 'ofont.ru_BlueCurve'; 
+	src: url(/fonts/ofont.ru_BlueCurve.ttf); 
+}
+html, body {
+  background-color: black;
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+  overflow: hidden;
+}
+.a{
+    text-align: center;
+    cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #ffffff;
+    cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+  }
+/*---------------------------------------------неон--------------------------------------*/
+.neon {
+    color: #ffffff;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+  }
+
+  .wrapper{
+    width: 90%;
+    padding:5rem;
+    grid-gap: 0.2rem;
+    color:white;
+    position: absolute;
+    top:55%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    display: flex;
+  }
+  /*--yellow--*/
+  .yellow{
+    font-family: 'ofont.ru_BlueCurve';
+    padding: 20px;
+    font-size: 40px;
+    letter-spacing: 8px;
+    border: 10px solid white;
+    text-align: center;
+    opacity:0;
+    border-radius: 5px;
+    animation: yellows .5s ease 3 forwards;
+    width: 500px;
+    margin: 0 auto;
+    transition: .5s;
+  }
+  .yellow:hover{
+    transform: scale(1.1);
+  }
+  @keyframes yellows{
+    0%{
+      opacity:0;
+      text-shadow: 0px 0px 0px #dcfe1d, 0px 0px 0px #e7fe1d, 0px 0px 0px #cdfe1d;
+      box-shadow: 0px 0px 0px 0px #effe1d, 0px 0px 0px 0px #c2fe1d,0px 0px 0px 0px #c2fe1d, inset 0px 0px 0px #dcfe1d;
+    }
+    20%{
+      opacity:0.5;
+      text-shadow: 0px 0px 2.5px #effe1d, 0px 0px 5px #fafe1d, 1px 1px 25px #dcfe1d;
+      box-shadow: 0px 0px 5px 0px #dcfe1d, 0px 0px 10px 0px #effe1d,0px 0px 50px 0px #effe1d, inset 0px 0px 20px #e7fe1d;
+    }
+    40%{
+      opacity:0;
+      text-shadow: 0px 0px 1px #e7fe1d, 0px 0px 2px #d5fe1d, 0px 0px 10px #effe1d;
+      box-shadow: 0px 0px 2px 0px #e7fe1d, 0px 0px 5px 0px #dcfe1d,0px 0px 25px 0px #dcfe1d, inset 0px 0px 10px #c2fe1d;
+    }
+    50%{
+      opacity:1;
+      text-shadow: 0px 0px 5px #fee71d, 0px 0px 10px #fedc1d, 1px 1px 50px #fafe1d;
+      box-shadow: 0px 0px 10px 0px #dcfe1d, 0px 0px 20px 0px #e7fe1d,0px 0px 100px 0px #effe1d, inset 0px 0px 30px #cdfe1d;
+    }
+    100%{
+      opacity:1;
+      text-shadow: 0px 0px 5px #effe1d, 0px 0px 10px #effe1d, 1px 1px 50px #dcfe1d;
+      box-shadow: 0px 0px 10px 0px #cdfe1d, 0px 0px 30px 0px #fefa1d,0px 0px 100px 0px #bafe1d, inset 0px 0px 30px #c2fe1d;
+    }
+  }
+  
+  .blackpink span{
+    transform: scaleX(-1);
+    display: inline-block;
+  }
+  .blackpink__tagline{
+    text-align: right;
+    font-size: .8rem;
+  }
+  
+  @media(max-width: 1150px){
+    .blackpink{
+      font-size: 5rem;
+      padding:2rem 0;
+      letter-spacing: 2px;
+    }
+  }
+  @media(max-width: 789px){
+    .wrapper{
+       width: 100%;
+       padding:2rem;
+  }
+    .blackpink{
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  /*-----------------------------------------------выход, назад и другое---------------------------------------*/
+
+/*Кнопка регистрации*/
+.glow-on-hover {
+    width: 70px;
+    height: 70px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 40px;
+    margin: 10px 0 0 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/*-------------------------------------------task и появление---------------------------------------------*/
+.task{
+    text-align: center;
+    color: #dcfe1d;
+    font-size: 70px;
+    animation: ani 1s forwards;
+}
+header>div {transform: translateX(-150%);}
+header>div:nth-child(1) {animation: ani 0.5s ease-in-out forwards;}
+header>div:nth-child(2) {animation: ani 0.5s forwards 0.5s;}
+header>div:nth-child(3) {animation: ani 0.5s forwards 1s;}
+header>div:nth-child(4) {animation: ani 0.5s forwards 1.5s;}
+header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
+
+@keyframes ani {
+  0% {transform: translateX(-150%);}
+  15% {transform: translateX(15%);}
+  30% {transform: translateX(-15%);}
+  45% {transform: translateX(7%);}
+  60% {transform: translateX(-7%);}
+  75% {transform: translateX(1%);}
+  85% {transform: translateX(-1%);}
+  100% {transform: translateX(0);}
+}
+#taskstart{
+    display: none;
+  }
+#upload{
+  display: none;
+}  
+/*------------------------------------------------------------------------------------*/
+
+@keyframes anibtn {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+/*------------------------------------ обратный отчет -------------------------------------------------------*/
+
+.timer{
+    margin: -50px auto 0 auto;
+    display: none;
+    font-size: 300px;
+}
+.timer__items {
+    display: flex;
+    font-size: 200px;
+  }
+  .timer__item {
+    position: relative;
+    min-width: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 15px;
+    text-align: center;
+  }
+  .timer__item::before {
+    content: attr(data-title);
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    font-size: 14px;
+  }
+  .timer__item:not(:last-child)::after {
+    content: ':';
+    position: absolute;
+    right: -15px;
+  }
+
+/*--------------------------------------------- загрузка видео --------------------------------------------------*/
+  .formfoto{
+    margin: -20px auto 0 auto;
+    display: flex;
+    z-index: 20;
+  }
+  .input-file-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    vertical-align: middle;
+    color: rgb(255 255 255);
+    text-align: center;
+    border-radius: 4px;
+    background-color: #419152;
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    transition: background-color 0.2s;
+  }
+  
+  /*-------------------------------------------------- Ты выбыл ----------------------------------------------------*/
+  .You-out{
+    color: #c10020;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+    font-size: 100px;
+    margin: -50px auto 0 auto;
+  }
+  #You-re-out{
+    display: none;
+  }
+
+/*---успех----*/
+.success{
+  font-family: "Gill Sans", sans-serif;
+  margin: 5% auto 0 auto;
+font-size: 300px;
+color: #48ff00;
+text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px rgb(0, 255, 42),
+      0 0 80px rgb(0, 255, 76),
+      0 0 90px rgb(0, 255, 21),
+      0 0 100px rgb(0, 255, 34),
+      0 0 150px rgb(0, 255, 42);
+}
+    
+.m{
+  margin: 0 auto;
+}

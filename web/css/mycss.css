@@ -1,0 +1,583 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton'); 
+@font-face {
+	font-family: 'ofont.ru_BebasNeue'; 
+	src: url(/fonts/ofont.ru_BebasNeue.ttf); 
+}
+html, body {
+  background-color: black;
+  overflow: hidden;
+  font-family: 'ofont.ru_BebasNeue'; 
+}
+.a{
+  color: #fcfcfc;
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+}
+.a:hover{
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+}
+.buttonAuthorization:hover{
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+}
+
+/*----------------------------- Первая заставка НЕРВ -------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,900');
+
+.wrapper{
+  width: 90%;
+  padding:5rem;
+  grid-gap: 0.2rem;
+  color:white;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.wrapper-inside{
+  width: 90%;
+  padding:5rem;
+  grid-gap: 0.2rem;
+  color:white;
+  position: absolute;
+  top:38%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+@media(max-width: 1150px){
+  .wrapper-inside{
+    width: 100%;
+    padding: 5px;
+  }
+}
+.wrapper-viewer{
+  width: 90%;
+  padding:5rem;
+  grid-gap: 0.2rem;
+  color:white;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.wrapper-player{
+  width: 90%;
+  padding:5rem;
+  grid-gap: 0.2rem;
+  color:white;
+  position: absolute;
+  top:50%;
+  left:68%;
+  transform:translate(-50%, -50%);
+}
+
+.blackpink{
+  font-family: 'Monoton', cursive;
+  font-size: 7rem;
+  font-weight: 500;
+  letter-spacing: 15px;
+  padding:0rem 2rem;
+  border: 10px solid white;
+  text-align: center;
+  opacity:0;
+  border-radius: 5px;
+  animation:lightson .5s ease 3 forwards;
+}
+@keyframes lightson{
+  0%{
+    opacity:0;
+    text-shadow: 0px 0px 0px #FE1DAD, 0px 0px 0px #FE1DAD, 0px 0px 0px #FE1DAD;
+    box-shadow: 0px 0px 0px 0px #fe1dad, 0px 0px 0px 0px #fe1dad,0px 0px 0px 0px #fe1dad, inset 0px 0px 0px #FE1DAD;
+  }
+  20%{
+    opacity:0.5;
+    text-shadow: 0px 0px 2.5px #FE1DAD, 0px 0px 5px #FE1DAD, 1px 1px 25px #FE1DAD;
+    box-shadow: 0px 0px 5px 0px #fe1dad, 0px 0px 10px 0px #fe1dad,0px 0px 50px 0px #fe1dad, inset 0px 0px 20px #FE1DAD;
+  }
+  40%{
+    opacity:0;
+    text-shadow: 0px 0px 1px #FE1DAD, 0px 0px 2px #FE1DAD, 0px 0px 10px #FE1DAD;
+    box-shadow: 0px 0px 2px 0px #fe1dad, 0px 0px 5px 0px #fe1dad,0px 0px 25px 0px #fe1dad, inset 0px 0px 10px #FE1DAD;
+  }
+  50%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #FE1DAD, 0px 0px 10px #FE1DAD, 1px 1px 50px #FE1DAD;
+    box-shadow: 0px 0px 10px 0px #fe1dad, 0px 0px 20px 0px #fe1dad,0px 0px 100px 0px #fe1dad, inset 0px 0px 30px #FE1DAD;
+  }
+  100%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #FE1DAD, 0px 0px 10px #FE1DAD, 1px 1px 50px #FE1DAD;
+    box-shadow: 0px 0px 10px 0px #fe1dad, 0px 0px 30px 0px #fe1dad,0px 0px 100px 0px #fe1dad, inset 0px 0px 30px #FE1DAD;
+  }
+}
+
+.blackpink span{
+  transform: scaleX(-1);
+  display: inline-block;
+}
+.blackpink__tagline{
+  text-align: right;
+  font-size: .8rem;
+}
+
+@media(max-width: 1150px){
+  .blackpink{
+    font-size: 5rem;
+    padding:2rem 0;
+    letter-spacing: 2px;
+  }
+}
+@media(max-width: 600px){
+  .blackpink{
+    width: 95%;
+  }
+}
+
+@media(max-width: 789px){
+  .wrapper{
+     width: 100%;
+     padding:2rem;
+}
+  .blackpink{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+
+
+/*----------------------------------------------- регистрация---------------------------------------*/
+.reg-form{
+    margin: 250px auto 0;
+}
+/*Кнопка регистрации*/
+.glow-on-hover {
+    width: 70px;
+    height: 70px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 40px;
+    text-align: center;
+    margin: 10px 0 0 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+/*---------------------------------------------- курсор ---------------------------------------------*/
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  grid-gap: 1em;
+}
+.grid a {
+  color: white;
+  font-size: 2em;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+  text-decoration: none; 
+  background: #878780;
+  }
+.grid a:hover {
+  background: #93928b;
+}
+.cursor {
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+}
+
+/*---------------------------------------------неон--------------------------------------*/
+.neon {
+    color: #fff;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+  }
+.welcome{
+  position: absolute;
+  z-index: 5;
+  margin: -50px 0 0 0;
+  letter-spacing: 5px;
+}
+@media(max-width: 850px){
+  .welcome{
+    font-size: 20px;
+  }
+}
+@media(max-width: 600px){
+  .welcome{
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin: -30px 0 0 0;
+  }
+}
+.header{
+  font-size: 15px;
+  margin: 0 auto;
+  padding: 0 20px;
+  letter-spacing: 5px;
+}
+
+  /*----------------------------- зритель или игрок? -------------------------------------*/
+  .or{
+    margin: 40px auto;
+    letter-spacing: 5px;
+  }
+  @media(max-width: 1000px){
+    .or{
+      margin: 20px auto;
+    }
+  }
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,900');
+
+.wrapper2{
+  width: 90%;
+  color:white;
+  position: absolute;
+  top:70%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  display: flex;
+}
+@media(max-width: 1000px){
+  .wrapper2{
+    top: 84%;
+  }
+}
+/*--yellow--*/
+.yellow{
+  padding: 10px;
+  font-size: 40px;
+  letter-spacing: 8px;
+  border: 10px solid white;
+  text-align: center;
+  opacity:0;
+  border-radius: 5px;
+  animation: yellows .5s ease 3 forwards;
+  width: 400px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: #000000;
+  color: #fffdfd;
+}
+.yellow:hover{
+  background-color: #fffbfb;
+  color: #020202;
+}
+@media(max-width: 1000px){
+  .yellow{
+    padding: 10px;
+  font-size: 20px;
+  letter-spacing: 4px;
+  border-radius: 4px;
+  animation: yellows .5s ease 3 forwards;
+  width: 140px;
+  height: 60px;
+  border: 5px solid white;
+  }
+}
+@keyframes yellows{
+  0%{
+    opacity:0;
+    text-shadow: 0px 0px 0px #dcfe1d, 0px 0px 0px #e7fe1d, 0px 0px 0px #cdfe1d;
+    box-shadow: 0px 0px 0px 0px #effe1d, 0px 0px 0px 0px #c2fe1d,0px 0px 0px 0px #c2fe1d, inset 0px 0px 0px #dcfe1d;
+  }
+  20%{
+    opacity:0.5;
+    text-shadow: 0px 0px 2.5px #effe1d, 0px 0px 5px #fafe1d, 1px 1px 25px #dcfe1d;
+    box-shadow: 0px 0px 5px 0px #dcfe1d, 0px 0px 10px 0px #effe1d,0px 0px 50px 0px #effe1d, inset 0px 0px 20px #e7fe1d;
+  }
+  40%{
+    opacity:0;
+    text-shadow: 0px 0px 1px #e7fe1d, 0px 0px 2px #d5fe1d, 0px 0px 10px #effe1d;
+    box-shadow: 0px 0px 2px 0px #e7fe1d, 0px 0px 5px 0px #dcfe1d,0px 0px 25px 0px #dcfe1d, inset 0px 0px 10px #c2fe1d;
+  }
+  50%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #fee71d, 0px 0px 10px #fedc1d, 1px 1px 50px #fafe1d;
+    box-shadow: 0px 0px 10px 0px #dcfe1d, 0px 0px 20px 0px #e7fe1d,0px 0px 100px 0px #effe1d, inset 0px 0px 30px #cdfe1d;
+  }
+  100%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #effe1d, 0px 0px 10px #effe1d, 1px 1px 50px #dcfe1d;
+    box-shadow: 0px 0px 10px 0px #cdfe1d, 0px 0px 30px 0px #fefa1d,0px 0px 100px 0px #bafe1d, inset 0px 0px 30px #c2fe1d;
+  }
+}
+
+
+.blackpink span{
+  transform: scaleX(-1);
+  display: inline-block;
+}
+.blackpink__tagline{
+  text-align: right;
+  font-size: .8rem;
+  margin: 5px auto;
+}
+
+@media(max-width: 1150px){
+  .blackpink{
+    font-size: 5rem;
+    padding:2rem 0;
+    letter-spacing: 2px;
+  }
+}
+@media(max-width: 789px){
+  .wrapper{
+     width: 100%;
+     padding:2rem;
+}
+  .blackpink{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+
+
+
+/*--green--*/
+.green{
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 40px;
+  letter-spacing: 8px;
+  border: 10px solid white;
+  text-align: center;
+  opacity:0;
+  border-radius: 5px;
+  animation: greenn .5s ease 3 forwards;
+  width: 400px;
+  height: 100px;
+  color: #f5f7f5;
+}
+.green:hover{
+  background-color: #fffbfb;
+  color: #000;
+}
+@media(max-width: 1000px){
+  .green{
+    padding: 10px;
+  font-size: 20px;
+  letter-spacing: 4px;
+  border-radius: 4px;
+  animation: yellows .5s ease 3 forwards;
+  width: 140px;
+  height: 60px;
+  border: 5px solid white;
+  }
+}
+@keyframes greenn{
+  0%{
+    opacity:0;
+    text-shadow: 0px 0px 0px #1dfe4e, 0px 0px 0px #1dfe4e, 0px 0px 0px #1dfe4e;
+    box-shadow: 0px 0px 0px 0px #10fc43, 0px 0px 0px 0px #10fc43,0px 0px 0px 0px #10fc43, inset 0px 0px 0px #10fc43;
+  }
+  20%{
+    opacity:0.5;
+    text-shadow: 0px 0px 2.5px #1dfe4e, 0px 0px 5px #1dfe3b, 1px 1px 25px #1dfe60;
+    box-shadow: 0px 0px 5px 0px #1dfe4e, 0px 0px 10px 0px #1dfe28,0px 0px 50px 0px #1dfe3b, inset 0px 0px 20px #30fe1d;
+  }
+  40%{
+    opacity:0;
+    text-shadow: 0px 0px 1px #30fe1d, 0px 0px 2px #1dfe1d, 0px 0px 10px #1dfe28;
+    box-shadow: 0px 0px 2px 0px #1dfe4e, 0px 0px 5px 0px #1dfe30,0px 0px 25px 0px #1dfe3b, inset 0px 0px 10px #1dfe1d;
+  }
+  50%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #1dfe42, 0px 0px 10px #1dfe3b, 1px 1px 50px #1dfe42;
+    box-shadow: 0px 0px 10px 0px #24fe1d, 0px 0px 20px 0px #1dfe1d,0px 0px 100px 0px #1dfe42, inset 0px 0px 30px #1dfe42;
+  }
+  100%{
+    opacity:1;
+    text-shadow: 0px 0px 5px #1dfe30, 0px 0px 10px #1dfe4e, 1px 1px 50px #1dfe68;
+    box-shadow: 0px 0px 10px 0px #1dfe42, 0px 0px 30px 0px #1dfe30,0px 0px 100px 0px #1dfe30, inset 0px 0px 30px #1dfe73;
+  }
+}
+
+
+.blackpink span{
+  transform: scaleX(-1);
+  display: inline-block;
+}
+.blackpink__tagline{
+  text-align: right;
+  font-size: .8rem;
+}
+
+@media(max-width: 1150px){
+  .blackpink{
+    font-size: 5rem;
+    padding:2rem 0;
+    letter-spacing: 2px;
+  }
+}
+
+
+@media(max-width: 789px){
+  .wrapper{
+     width: 100%;
+     padding:2rem;
+}
+  .blackpink{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+  /*----------------------------- Настройки сайта в админке -------------------------------------*/
+  .settings{
+    position: relative;
+    left: 100px;
+  }
+/*----------------------------- Кнопка где выбор задания -------------------------------------*/
+
+.a-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 10px;
+  margin: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.5s;
+  width: 350px;
+text-align: center;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  flex-direction: row;  
+}
+.blue-btn{
+  color: #03e9f4;
+  border: 1.5px solid #03e9f4;
+  border-radius: 7px;  
+}
+.blue-btn:hover{
+  background-color: #03e9f4;
+  color: #050801;
+  box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.pink-btn{
+  color: #e100ff;
+  border: 1.5px solid #e100ff;
+  border-radius: 7px;  
+  margin: 0 auto;
+  background-color: #000000;
+}
+.pink-btn:hover{
+  background-color: #e100ff;
+  color: #050801;
+  box-shadow: 0px 0px 5px #e100ff, 0px 0px 25px #e100ff, 0px 0px 50px #e100ff, 0px 0px 100px #e100ff;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+/*----------------------------------------- Список заданий -------------------------------------*/
+.listtasks{
+margin: -50px auto;
+}
+.numtask{
+  margin: 6px 20px 0 0;
+  font-size: 30px;
+}
+
+
+header>div {transform: translateX(-250%);}
+header>div:nth-child(1) {animation: ani 0.5s ease-in-out forwards;}
+header>div:nth-child(2) {animation: ani 0.5s forwards 0.5s;}
+header>div:nth-child(3) {animation: ani 0.5s forwards 1s;}
+header>div:nth-child(4) {animation: ani 0.5s forwards 1.5s;}
+header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
+header>div:nth-child(6) {animation: ani 0.5s forwards 2.5s;}
+header>div:nth-child(7) {animation: ani 0.5s forwards 3s;}
+header>div:nth-child(8) {animation: ani 0.5s forwards 3.5s;}
+header>div:nth-child(9) {animation: ani 0.5s forwards 4s;}
+header>div:nth-child(10) {animation: ani 0.5s forwards 4.5s; margin: 0 0 0 -12px;}
+
+@keyframes ani {
+  0% {transform: translateX(-250%);}
+  15% {transform: translateX(5%);}
+  30% {transform: translateX(-5%);}
+  45% {transform: translateX(3%);}
+  60% {transform: translateX(-3%);}
+  75% {transform: translateX(1%);}
+  85% {transform: translateX(-1%);}
+  100% {transform: translateX(0);}
+}
+
+
+
+#showmoney{
+  display: none;
+  margin: -75px 0 0 0;
+}
