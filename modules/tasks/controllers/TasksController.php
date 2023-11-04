@@ -73,13 +73,8 @@ class TasksController extends Controller
         $price = Task::find()->where('id = :id', [':id' => $id])->one();
         $taskPrice = $price->price;
 
-        $user = Yii::$app->user->identity;
-
-        
-
         return $this->render('success', [
-            'taskPrice' => $taskPrice,
-            'user' => $user
+            'taskPrice' => $taskPrice
         ]);
     }
 
@@ -175,7 +170,12 @@ class TasksController extends Controller
 
         $userId = Yii::$app->user->identity->id;
 
+        $customer = Task::find()->where(['id' => $id])->one();
+    
+        $taskPrice = $customer->price;
+
         $model = new UploadImage();
+        
     if(Yii::$app->request->isPost){
 
             $task = $this->findModel($id);
@@ -193,7 +193,7 @@ class TasksController extends Controller
             $customer->save();
 
             if ($task->saveImage($model->uploadFile($file, $task->image))) {
-                return $this->redirect(['success' , 'id' => $userId]);
+                return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);
             }
         }
         return $this->render('image', [

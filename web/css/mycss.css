@@ -331,6 +331,9 @@ html, body {
   background-color: #fffbfb;
   color: #020202;
 }
+.yellow:active{
+  background-color: #1dfe1d;
+}
 @media(max-width: 1000px){
   .yellow{
     padding: 10px;
@@ -420,6 +423,9 @@ html, body {
 .green:hover{
   background-color: #fffbfb;
   color: #000;
+}
+.green:active{
+  background-color: #1dfe1d;
 }
 @media(max-width: 1000px){
   .green{
