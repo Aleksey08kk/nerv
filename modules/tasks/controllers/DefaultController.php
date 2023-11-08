@@ -52,7 +52,7 @@ class DefaultController extends Controller
         $userId = Yii::$app->user->identity->id;
         $userModel = User::find()->where(['id' => $userId])->one();
 
-            if ($userModel->role == 2) { // 2 - игрок
+            if ($userModel->role <= 2) { // 2 - игрок
                 return $this->redirect(['index']);
             } else {
                 return $this->render('noaccessplayer');

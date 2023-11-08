@@ -1,7 +1,6 @@
 <?php
 
-use app\widgets\Alert;
-use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\assets\MyAsset;
 
@@ -13,7 +12,7 @@ MyAsset::register($this);
 $this->title = 'Нерв';
 ?>
 
-
+<a class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
 
 <div class="task-from">
     <h1 class="tac">Задания от зрителей</h1>
@@ -37,11 +36,20 @@ $this->title = 'Нерв';
                 <?= $form->field($model, 'proposed_task')->textarea(['class' => 'form-control', 'placeholder' => 'Напиши своё задание'])->label(false) ?>
             </div>
         </div>
-        <button type="submit" class="btn send-btn ">Опубликовать</button>
+        <button type="submit" class="glow">Опубликовать</button>
         <?php ActiveForm::end(); ?>
     </div>
 </div>
 
-
+<h1 class="all-players">Все игроки</h1>
+    <div class="listtask scroll" id="scrollTop" >
+        <?php foreach ($allUser as $oneUser) : ?>
+            <div class="col-sm-9">
+                <div class="wooo">
+                    <h5 class="taskviewer"><?= $oneUser->name ?></h5>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
 

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 
+use app\models\Completing;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -91,10 +92,12 @@ class SiteController extends Controller
         }
 
         $allTasks = TaskFromViewer::find()->all();
+        $allUser = User::find()->where(['role' => 2])->all();
 
         return $this->render('viewer', [
             'allTasks' => $allTasks,
             'model' => $model,
+            'allUser' => $allUser
         ]);
     }
 

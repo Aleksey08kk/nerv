@@ -2,11 +2,7 @@
 var block = document.getElementById("scrollTop");
   block.scrollTop = block.scrollHeight;
 
-  $(document).ready(function () {
-    if (!$.browser.webkit) {
-      $('.wrapper').html('<p>Sorry! Non webkit users.</p>');
-    }
-  });
+  
 
 function viewMoney(){
     document.getElementById("showmoney").style.display = "block";

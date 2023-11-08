@@ -201,7 +201,7 @@ class TasksController extends Controller
 
             
             //$completingId->iii = $numberTask;
-            $completingId->saveImage($model->uploadFile($file));
+            $completingId->saveImage($model->uploadFile($file), $numberTask);
 
         
             return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);

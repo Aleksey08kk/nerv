@@ -63,10 +63,9 @@ class Completing extends \yii\db\ActiveRecord
         ];
     }
 
-    
-    public function saveImage($filename)
+    public function saveImage($filename, $numberTask)
     {
-        $this->video_first = $filename;
+        $this->$numberTask = $filename;
         return $this->save(false);
     }
     
