@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Task;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
@@ -33,10 +34,14 @@ $this->title = 'Игра началась';
 <div class="formfoto" id="upload">
     <?php $form = ActiveForm::begin(); ?>
     <div class="formfoto">
-        <div><?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?></div>
+    <div>
+        <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+    </div>
         <div><?= Html::submitButton('Отправить', ['class' => 'input-file-btn']) ?></div>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
+
+
 <!------------------------------------------------------------------------------------->
 

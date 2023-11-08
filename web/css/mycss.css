@@ -587,3 +587,75 @@ header>div:nth-child(10) {animation: ani 0.5s forwards 4.5s; margin: 0 0 0 -12px
   display: none;
   margin: -75px 0 0 0;
 }
+
+
+.no{
+  margin: 300px auto 50px auto;
+}
+.noruls{
+  text-align: center;
+}
+
+/*------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
+/*------------------------------------ Страница зрителя-------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
+.task-from{
+  width: 400px;
+  height: 100%;
+  position: absolute;
+	right: 0;
+  top: 50px;
+}
+.tac{
+  margin: 0 0 20px 15px;
+}
+.comment{
+  width: 400px;
+  position: absolute;
+	right: 0;
+	bottom: 100px;
+}
+.listtask{
+  height: 365px;
+  width: 360px;
+overflow-y: scroll;
+}
+.taskviewer{
+  width: 330px;
+  overflow: hidden;
+}
+.taskviewer:hover{
+  color: white;
+}
+/*------------------------------------- Скрол -----------------------------------------------------*/
+:root {
+  --scrollbarBg: rgba(2, 142, 74, 1);
+  --scrollbarThumb: rgba(255, 255, 255, 0.8);
+  --scrollbarWidth: 12px;
+  --scrollbarBorder: 3px solid var(--scrollbarBg);
+  --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+}
+.scroll {
+  scrollbar-width: var(--scrollbarWidth);
+  scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+}
+.scroll::-webkit-scrollbar {
+  width: var(--scrollbarWidth);
+}
+.scroll::-webkit-scrollbar-track {
+  background: var(--scrollbarBg);
+  border-radius: var(--scrollbarBorderRadius);
+}
+.scroll::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbarThumb);
+  border-radius: var(--scrollbarBorderRadius);
+  border: var(--scrollbarBorder);
+}
+
+.scroll {
+  overflow: auto;
+}

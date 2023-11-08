@@ -3,6 +3,7 @@
 namespace app\modules\tasks\controllers;
 
 use app\models\Task;
+use app\models\Completing;
 use app\models\TaskSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -12,6 +13,7 @@ use app\models\User;
 use yii\web\UploadedFile;
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\models\UploadForm;
 
 /**
  * TasksController implements the CRUD actions for Task model.
@@ -164,14 +166,11 @@ class TasksController extends Controller
     }
 
 
-    public function actionImage($id) //эта функция для сохранения видео в самом задании с таймером
+    public function actionImage($id) 
     {
         $taskDescription = Task::find()->where('id = :id', [':id' => $id])->one();
-
         $userId = Yii::$app->user->identity->id;
-
         $customer = Task::find()->where(['id' => $id])->one();
-    
         $taskPrice = $customer->price;
 
         $model = new UploadImage();
@@ -185,22 +184,38 @@ class TasksController extends Controller
             $task->save();
 
             $taskPrice = Task::find()->where(['id' => $id])->one();
-            $customer = new User();
+            
             $customer = User::find()->where(['id' => $userId])->one();
 
             $money = $customer->money;
             $customer->money = $taskPrice->price + $money;
             $customer->save();
 
-            if ($task->saveImage($model->uploadFile($file, $task->image))) {
-                return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);
-            }
+            
+            $numberTask = Task::find()->where(['id' => $id])->one();
+            $numberTask = $numberTask->number;
+        $completingId = Completing::find()->where(['user_id' => $userId])->one();
+        if($completingId->id){
+            //$completingId->$numberTask = "foto";
+            //$completingId->save();
+
+            
+            //$completingId->iii = $numberTask;
+            $completingId->saveImage($model->uploadFile($file));
+
+        
+            return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);
+        }
+
+
         }
         return $this->render('image', [
             'model' => $model,
             'taskDescription' => $taskDescription
         ]);
     }
+
+
 
     
     

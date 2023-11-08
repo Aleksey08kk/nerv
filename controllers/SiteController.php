@@ -6,11 +6,10 @@ namespace app\controllers;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\UploadImage;
-use yii\web\UploadedFile;
 use Yii;
 use app\models\Task;
 use app\models\User;
+use app\models\TaskFromViewer;
 
 class SiteController extends Controller
 {
@@ -68,16 +67,13 @@ class SiteController extends Controller
         return $this->render('inside', []);
     }
 
-    public function actionViewer()
-    {
-        return $this->render('viewer');
-    }
+    
 
     public function actionPlayer()
     {
-        $id = 1;
+        $id = Yii::$app->user->identity->id;;
         $model = Task::find()->where('id = :id', [':id' => $id])->one();
-        $task = $model->description; // достали задание из базы
+        $task = $model->description; 
 
         return $this->render('player', [
             'task' => $task,
@@ -85,8 +81,43 @@ class SiteController extends Controller
     }
 
 
-    
+    public function actionViewer(){ 
+        $model = new TaskFromViewer();
+        $userId = Yii::$app->user->identity->id;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = $userId;
+            $model->save();
+            return $this->redirect(['viewer']);
+        }
 
+        $allTasks = TaskFromViewer::find()->all();
+
+        return $this->render('viewer', [
+            'allTasks' => $allTasks,
+            'model' => $model,
+        ]);
+    }
+
+
+
+
+    public function actionNoaccess(){ 
+        return $this->render('noaccess');
+    }
+    
+    public function actionViewerAccess(){ 
+        $userId = Yii::$app->user->identity->id;
+        $userModel = User::find()->where(['id' => $userId])->one();
+
+            if ($userModel->role == 3) { // 3 - зритель
+                return $this->redirect(['viewer']);
+            } else {
+                return $this->render('noaccess');
+            }
+    }
+
+    
+    
     
 
     

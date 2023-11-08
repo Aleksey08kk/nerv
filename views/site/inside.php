@@ -32,8 +32,8 @@ $this->title = 'Нерв';
 
 <!-------------------------------------------зритель или игрок?------------------------------------------>
 <div class="wrapper2">
-<a class="a yellow" href="<?= Url::toRoute(['site/viewer']) ?>">Зритель</a>
+<a class="a yellow" href="<?= Url::toRoute(['site/viewer-access']) ?>">Зритель</a>
 <p class="or neon">или</p>
-<a class="a green" href="<?= Url::toRoute(['/tasks']) ?>">Игрок</a>
+<a class="a green" href="<?= Url::toRoute(['tasks/default/access']) ?>">Игрок</a> <!--tasks/default/index-->
 </div>
 
