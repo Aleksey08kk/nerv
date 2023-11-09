@@ -21,9 +21,10 @@ $this->title = 'Игра началсь';
 
 <a class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
 
+
 <div class="listtasks">
     <header>
-        <?php foreach ($tasks as $task): ?>
+        <?php foreach ($tasks as $task) : ?>
             <div style="display: flex;">
                 <p class="numtask"><?= $task->id ?></p>
                 <?= Html::a('НАЧАТЬ ЗАДАНИЕ', ['tasks/image', 'id' => $task->id], ['class' => 'blue-btn a-btn']) ?>

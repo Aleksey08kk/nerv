@@ -16,8 +16,7 @@ MyAsset::register($this);
 $this->title = 'Игра началась';
 ?>
 
-
-<a class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
+<br><br><br>
 
 <!----------------------------------------------гравная страница------------------------------------------>
 <h1 class="task" id="taskstart"><?= $taskDescription->description ?></h1>
@@ -27,7 +26,7 @@ $this->title = 'Игра началась';
 <span class="timer task" id="timer"></span>
 
 <div class="wrapper" id="btntaskstart">
-    <input class="pink-btn a-btn" type="button" value="Начать задание" onmousedown="viewTask()">
+    <input class="pink-btn a-btn" type="button" value="Запустить таймер" onmousedown="viewTask()">
 </div>
 
 
@@ -43,5 +42,10 @@ $this->title = 'Игра началась';
 </div>
 
 
-<!------------------------------------------------------------------------------------->
-
+<!---- звук при нажатии
+<input type="button" value="sound" onclick="playMusic()" />
+function playMusic(){
+  var music = new Audio('/sound/knopka1.mp3');
+  music.play();
+  }
+-->

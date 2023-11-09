@@ -45,14 +45,9 @@ class TasksController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TaskSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
         $tasks = Task::find()->all();
-        
+
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
             'tasks' => $tasks
         ]);
     }
@@ -184,29 +179,20 @@ class TasksController extends Controller
             $task->save();
 
             $taskPrice = Task::find()->where(['id' => $id])->one();
-            
             $customer = User::find()->where(['id' => $userId])->one();
 
             $money = $customer->money;
             $customer->money = $taskPrice->price + $money;
             $customer->save();
 
-            
             $numberTask = Task::find()->where(['id' => $id])->one();
             $numberTask = $numberTask->number;
-        $completingId = Completing::find()->where(['user_id' => $userId])->one();
+            $completingId = Completing::find()->where(['user_id' => $userId])->one();
+
         if($completingId->id){
-            //$completingId->$numberTask = "foto";
-            //$completingId->save();
-
-            
-            //$completingId->iii = $numberTask;
             $completingId->saveImage($model->uploadFile($file), $numberTask);
-
-        
             return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);
         }
-
 
         }
         return $this->render('image', [

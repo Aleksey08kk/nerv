@@ -16,7 +16,7 @@ $this->title = 'Нерв';
 
 <div class="wrapper2">
 <button class="yellow" onmousedown="viewMoney()"><p id="btnmoney">Деньги</p><p id="showmoney" onmousedown="viewWord()"><?=$money?> Рублей</p></button>
-<a class="a green" href="<?= Url::toRoute(['tasks/index']) ?>">Пробовать</a>
+<a id="btntry" class="a green" href="<?= Url::toRoute(['tasks/index']) ?>">Пробовать</a>
 </div>
 
 

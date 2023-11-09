@@ -1,6 +1,5 @@
 
 
-
     function hiddenTask(){
         document.getElementById('taskstart').style.visibility = 'hidden';
         document.getElementById("upload").style.visibility = 'hidden';
@@ -13,7 +12,6 @@
         document.getElementById("upload").style.display = "block";
         document.getElementById('btntaskstart').style.visibility = 'hidden';
         setTimeout(hiddenTask, 1000 * 60);
-      
       };
 /*----------------------------------------------------------------------------------------------------*/
 

@@ -21,6 +21,8 @@ $this->title = 'Нерв';
             <div class="col-sm-9">
                 <div class="wooo">
                     <h5 class="taskviewer"><?= $oneTask->proposed_task ?></h5>
+                    <a onclick="playMusic()" class="like" href="<?= Url::toRoute(['site/like', 'id' => $oneTask->id]) ?>">👍</a>
+                    <span class="like"><?= $oneTask->like ?></span>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -41,6 +43,7 @@ $this->title = 'Нерв';
     </div>
 </div>
 
+
 <h1 class="all-players">Все игроки</h1>
     <div class="listtask scroll" id="scrollTop" >
         <?php foreach ($allUser as $oneUser) : ?>
@@ -53,3 +56,10 @@ $this->title = 'Нерв';
     </div>
 
 
+<!---- звук при нажатии
+<input type="button" value="sound" onclick="playMusic()" />
+function playMusic(){
+  var music = new Audio('/sound/knopka1.mp3');
+  music.play();
+  }
+-->

@@ -625,11 +625,23 @@ header>div:nth-child(10) {animation: ani 0.5s forwards 4.5s; margin: 0 0 0 -12px
 overflow-y: scroll;
 }
 .taskviewer{
-  width: 330px;
+  width: 350px;
   overflow: hidden;
 }
-.taskviewer:hover{
+
+.wooo{
+  display: flex;
+  width: 330px;
+}
+.wooo:hover{
   color: white;
+}
+.like{
+  margin: 0 0 0 6px;
+  background-color: #000000;
+  border: none;
+  text-underline-offset: none;
+  font-size: 20px;
 }
 /*------------------------------------- Скрол -----------------------------------------------------*/
 :root {
@@ -723,3 +735,14 @@ overflow-y: scroll;
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
 }
+
+
+
+
+
+
+
+
+
+
+

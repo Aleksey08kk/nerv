@@ -120,7 +120,13 @@ class SiteController extends Controller
     }
 
     
-    
+    public function actionLike($id){ 
+        $customer = TaskFromViewer::find()->where(['id' => $id])->one();
+        $like = $customer->like;
+        $customer->like = $like + 1;
+        $customer->save();
+        return $this->redirect(['viewer']);
+    }
     
 
     

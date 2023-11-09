@@ -2,7 +2,10 @@
 var block = document.getElementById("scrollTop");
   block.scrollTop = block.scrollHeight;
 
-  
+  function playMusic(){
+    var music = new Audio('/sound/knopka1.mp3');
+    music.play();
+    }
 
 function viewMoney(){
     document.getElementById("showmoney").style.display = "block";
@@ -15,4 +18,4 @@ function viewMoney(){
   };
 
  
- 
+  

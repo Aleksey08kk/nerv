@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int|null $user_id
  * @property string|null $proposed_task
+ * @property string|null $like
  */
 class TaskFromViewer extends \yii\db\ActiveRecord
 {
