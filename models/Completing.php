@@ -69,9 +69,45 @@ class Completing extends \yii\db\ActiveRecord
         return $this->save(false);
     }
     
-    public function getImage()
+    public function getImageOne()
     {
-        return ($this->image) ? '/uploads/' . $this->image : '/no-image.png';
+        return ($this->video_first) ? '/uploads/' . $this->video_first : 'd9f16c0ddb1b43b738f13ade8ff03d2e.mp4';
+    }
+    public function getImageTwo()
+    {
+        return ($this->video_second) ? '/uploads/' . $this->video_second : '/no-image.png';
+    }
+    public function getImageThree()
+    {
+        return ($this->video_third) ? '/uploads/' . $this->video_third : '/no-video.mp4';
+    }
+    public function getImageFour()
+    {
+        return ($this->video_fourth) ? '/uploads/' . $this->video_fourth : '/no-image.png';
+    }
+    public function getImageFive()
+    {
+        return ($this->video_fifth) ? '/uploads/' . $this->video_fifth : '/no-image.png';           
+    }
+    public function getImageSix()
+    {
+        return ($this->video_sixth) ? '/uploads/' . $this->video_sixth : '/no-image.png';
+    }
+    public function getImageSeven()
+    {
+        return ($this->video_seventh) ? '/uploads/' . $this->video_seventh : '/no-image.png';
+    }
+    public function getImageEight()
+    {
+        return ($this->video_eighth) ? '/uploads/' . $this->video_eighth : '/no-image.png';
+    }
+    public function getImageNine()
+    {
+        return ($this->video_ninth) ? '/uploads/' . $this->video_ninth : '/no-image.png';
+    }
+    public function getImageTen()
+    {
+        return ($this->video_tenth) ? '/uploads/' . $this->video_tenth : '/no-image.png';
     }
 
     public function deleteImage()

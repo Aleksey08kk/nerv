@@ -2,10 +2,22 @@
 var block = document.getElementById("scrollTop");
   block.scrollTop = block.scrollHeight;
 
-  function playMusic(){
-    var music = new Audio('/sound/knopka1.mp3');
-    music.play();
-    }
+function playMusic() {
+  var music = new Audio('/sound/like.mp3');
+  music.play();
+}
+function playExit() {
+  var music = new Audio('/sound/exit.mp3');
+  music.play();
+}
+function playButton() {
+  var music = new Audio('/sound/button.mp3');
+  music.play();
+}
+function playSong() {
+  var music = new Audio('/sound/song.mp3');
+  music.play();
+}
 
 function viewMoney(){
     document.getElementById("showmoney").style.display = "block";

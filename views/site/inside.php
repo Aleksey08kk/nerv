@@ -34,6 +34,7 @@ $this->title = 'Нерв';
 <div class="wrapper2">
 <a class="a yellow" href="<?= Url::toRoute(['site/viewer-access']) ?>">Зритель</a>
 <p class="or neon">или</p>
-<a class="a green" href="<?= Url::toRoute(['tasks/default/access']) ?>">Игрок</a> <!--tasks/default/index-->
+<a class="a green" href="<?= Url::toRoute(['tasks/default/access']) ?>">Игрок</a> 
 </div>
 
+<input class="pink-btn a-btn" type="button" value="музыка" onclick="playSong()">

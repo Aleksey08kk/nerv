@@ -81,6 +81,48 @@ class SiteController extends Controller
         ]);
     }
 
+    
+
+public function actionShowVideo($id){ 
+        $model = new TaskFromViewer();
+        
+        $completing = Completing::find()->where(['user_id' => $id])->one();
+        $completingNum = $completing->id;
+        $completing = Completing::find()->where(['id' => $completingNum])->one();
+        $videoOne = $completing->getImageOne();
+        $videoTwo = $completing->getImageTwo();
+        $videoThree = $completing->getImageThree();
+        $videoFour = $completing->getImageFour();
+        $videoFive = $completing->getImageFive();
+        $videoSix = $completing->getImageSix();
+        $videoSeven = $completing->getImageSeven();
+        $videoEight = $completing->getImageEight();
+        $videoNine = $completing->getImageNine();
+        $videoTen = $completing->getImageTen();
+
+        $allTasks = TaskFromViewer::find()->all();
+        $allUser = User::find()->where(['role' => 2])->all();
+
+        $userOne = User::find()->where(['id' => $id])->one();
+
+        return $this->render('viewer', [
+            'allTasks' => $allTasks,
+            'model' => $model,
+            'allUser' => $allUser,
+            'completing' => $completing,
+            'videoOne' => $videoOne,
+            'videoTwo' => $videoTwo,
+            'videoThree' => $videoThree,
+            'videoFour' => $videoFour,
+            'videoFive' => $videoFive,
+            'videoSix' => $videoSix,
+            'videoSeven' => $videoSeven,
+            'videoEight' => $videoEight,
+            'videoNine' => $videoNine,
+            'videoTen' => $videoTen,
+            'userOne' => $userOne
+        ]);
+    }
 
     public function actionViewer(){ 
         $model = new TaskFromViewer();
@@ -91,13 +133,18 @@ class SiteController extends Controller
             return $this->redirect(['viewer']);
         }
 
+        $completing = Completing::find()->where(['id' => 21])->one();
+        $videoOne = $completing->getImageOne();
+
         $allTasks = TaskFromViewer::find()->all();
         $allUser = User::find()->where(['role' => 2])->all();
 
         return $this->render('viewer', [
             'allTasks' => $allTasks,
             'model' => $model,
-            'allUser' => $allUser
+            'allUser' => $allUser,
+            'completing' => $completing,
+            'videoOne' => $videoOne,
         ]);
     }
 
