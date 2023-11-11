@@ -47,11 +47,8 @@ html, body {
 .wrapper-inside{
   width: 90%;
   padding:5rem;
-  grid-gap: 0.2rem;
   color:white;
-  position: absolute;
-  top:38%;
-  left:50%;
+  margin: 250px 0 0 50%;
   transform:translate(-50%, -50%);
 }
 @media(max-width: 1150px){
@@ -69,6 +66,12 @@ html, body {
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
+}
+@media(max-width: 400px){
+  .wrapper-viewer{
+    width: 100%;
+    padding: 5px;
+  }
 }
 .wrapper-player{
   width: 90%;
@@ -139,7 +142,7 @@ html, body {
 }
 @media(max-width: 600px){
   .blackpink{
-    width: 95%;
+    width: 100%;
   }
 }
 
@@ -174,6 +177,13 @@ html, body {
     font-size: 40px;
     text-align: center;
     margin: 10px 0 0 10px;
+}
+@media(max-width: 789px){
+  .glow-on-hover{
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+}
 }
 
 .glow-on-hover:before {
@@ -283,7 +293,11 @@ html, body {
   padding: 0 20px;
   letter-spacing: 5px;
 }
-
+@media(max-width: 390px){
+  .header{
+    display: grid;
+  }
+}
   /*----------------------------- зритель или игрок? -------------------------------------*/
   .or{
     margin: 40px auto;
@@ -516,6 +530,11 @@ html, body {
   width: 350px;
 text-align: center;
 }
+@media(max-width: 400px){
+  .a-btn{
+    width: 290px;
+}
+}
 
 .btns{
   display: flex;
@@ -524,6 +543,7 @@ text-align: center;
   min-height: 90vh;
   flex-direction: row;  
 }
+
 .blue-btn{
   color: #03e9f4;
   border: 1.5px solid #03e9f4;
@@ -551,6 +571,11 @@ text-align: center;
 /*----------------------------------------- Список заданий -------------------------------------*/
 .listtasks{
 margin: -50px auto;
+}
+@media(max-width: 400px){
+  .listtasks{
+    margin: 0 auto;
+}
 }
 .numtask{
   margin: 6px 20px 0 0;
@@ -595,6 +620,13 @@ header>div:nth-child(10) {animation: ani 0.5s forwards 4.5s; margin: 0 0 0 -12px
 .noruls{
   text-align: center;
 }
+@media(max-width: 400px){
+  .no{
+    margin: -60px auto 180px auto;
+    font-size: 40px;
+    text-align: center;
+  }
+}
 
 /*------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------*/
@@ -637,19 +669,16 @@ overflow-y: scroll;
 .wooo:hover{
   color: white;
 }
-.wooo2{
-  display: flex;
-  width: 230px;
-}
-.wooo2:hover{
-  color: white;
-}
+
 .like{
   margin: 0 0 0 6px;
   background-color: #000000;
   border: none;
   text-underline-offset: none;
   font-size: 20px;
+}
+.like:hover{
+  text-decoration: none;
 }
 /*------------------------------------- Скрол -----------------------------------------------------*/
 :root {
@@ -767,6 +796,97 @@ padding: 20px;
   margin: 10px 0 0 25px;
 }
 
+/*----------------------------------------  имена -----------------------------------------------*/
+.names{
+  border: 1px solid rgb(22, 22, 22);
+  padding: 20px;
+  margin: 0 0 0 20px;
+}
+.wooo2{
+  display: flex;
+  width: 170px;
+}
+.wooo2:hover{
+  color: white;
+}
 
 
+/*------------------------------------ Модальное окно -----------------------------------------------*/
 
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.74); /* Black w/ opacity */
+}
+
+
+.modal-content {
+    position: relative;
+    background-color: #E1BEE7;
+    margin: auto;
+    padding: 0;
+    border-radius: 5px;
+    width: 50%;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+@media(max-width: 390px){
+  .modal-content{
+    width: 300px;
+}
+}
+
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #ffffff;
+    color: white;
+    animation:lightson .5s ease 3 forwards;
+}
+
+.modal-body {padding: 2px 16px;}
+
+
+@media(max-width: 390px){
+  #showmoney{
+    padding: 27px 0 0 0;
+}
+}

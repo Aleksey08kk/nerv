@@ -35,6 +35,8 @@ $this->title = 'Игра началась';
     <div class="formfoto">
     <div>
         <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+        <input type="file" accept="uploads/*" capture="camera">
+                
     </div>
         <div><?= Html::submitButton('Отправить', ['class' => 'input-file-btn']) ?></div>
     </div>

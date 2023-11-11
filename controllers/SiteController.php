@@ -105,6 +105,7 @@ public function actionShowVideo($id){
 
         $userOne = User::find()->where(['id' => $id])->one();
 
+
         return $this->render('viewer', [
             'allTasks' => $allTasks,
             'model' => $model,
@@ -120,7 +121,8 @@ public function actionShowVideo($id){
             'videoEight' => $videoEight,
             'videoNine' => $videoNine,
             'videoTen' => $videoTen,
-            'userOne' => $userOne
+            'userOne' => $userOne,
+            'taskName' => $taskName
         ]);
     }
 

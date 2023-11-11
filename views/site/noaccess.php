@@ -11,7 +11,7 @@ $this->title = 'Нерв';
 <a class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
 <!----------------------------------------------гравная страница------------------------------------------>
 <br><br><br>
-<div class="wrapper-inside">
+<div class="wrapper-viewer">
     <div class="blackpink">HEPB</div>
 </div>
 

@@ -186,6 +186,12 @@ html, body {
     font-size: 70px;
     animation: ani 1s forwards;
 }
+@media(max-width: 400px){
+  .task{
+    font-size: 30px;
+    padding: 0 5px;
+}
+}
 header>div {transform: translateX(-150%);}
 header>div:nth-child(1) {animation: ani 0.5s ease-in-out forwards;}
 header>div:nth-child(2) {animation: ani 0.5s forwards 0.5s;}
@@ -221,6 +227,11 @@ header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
     margin: -50px auto 0 auto;
     display: none;
     font-size: 300px;
+}
+@media(max-width: 400px){
+  .timer{
+    font-size: 200px;
+}
 }
 .timer__items {
     display: flex;
@@ -290,6 +301,11 @@ header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
       0 0 150px #0ff;
     font-size: 100px;
     margin: -50px auto 0 auto;
+  }
+  @media(max-width: 400px){
+    .You-out{
+      font-size: 40px;
+  }
   }
   #You-re-out{
     display: none;

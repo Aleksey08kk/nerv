@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Task;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\assets\MyAsset;
@@ -55,7 +56,7 @@ $this->title = 'Нерв';
 
 <a onclick="playExit()" class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
 
-    <div class="scroll" id="scrollTop">
+    <div class="names scroll" id="scrollTop">
         <h1 class="all-players">Все игроки</h1>
         <?php foreach ($allUser as $oneUser) : ?>
             <div class="col-sm-2">
@@ -77,9 +78,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+                <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -89,9 +89,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -101,9 +100,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -113,9 +111,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -125,9 +122,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -137,9 +133,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -149,9 +144,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -161,9 +155,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -173,9 +166,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
         <div class="flex">
@@ -185,9 +177,8 @@ $this->title = 'Нерв';
                 </video>
             </div>
             <ul>
-                <li>dfn</li>
-                <li>zdtgn</li>
-                <li>zdgt</li>
+            <li></li>
+                <li></li>
             </ul>
         </div>
 
