@@ -17,6 +17,8 @@ class UploadImage extends Model{
         ];
     }
 
+    
+
     public function uploadFile($file){
         $this->image = $file;
         return $this->saveImage();

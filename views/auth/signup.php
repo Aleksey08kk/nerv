@@ -37,3 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
         
 
     
+<footer style="margin: 800px 0 0 0; padding: 0 0 0 30px;">
+    <h5 style="font-size: 15px;">Все права защищены© 2023г.</h5>
+    </footer>

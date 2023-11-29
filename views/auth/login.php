@@ -12,7 +12,6 @@ use app\assets\MyAsset;
 MyAsset::register($this);
 
 $this->title = 'Вход';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="reg-form">
@@ -37,3 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
+<footer style="margin: 800px 0 0 0; padding: 0 0 0 30px;">
+    <h5 style="font-size: 15px;">Все права защищены© 2023г.</h5>
+    </footer>

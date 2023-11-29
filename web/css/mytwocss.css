@@ -5,7 +5,6 @@
 html, body {
   background-color: black;
   cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
-  overflow: hidden;
 }
 .a{
     text-align: center;
@@ -186,7 +185,7 @@ html, body {
     font-size: 70px;
     animation: ani 1s forwards;
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .task{
     font-size: 30px;
     padding: 0 5px;
@@ -228,7 +227,7 @@ header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
     display: none;
     font-size: 300px;
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .timer{
     font-size: 200px;
 }
@@ -302,7 +301,7 @@ header>div:nth-child(5) {animation: ani 0.5s forwards 2s;}
     font-size: 100px;
     margin: -50px auto 0 auto;
   }
-  @media(max-width: 400px){
+  @media(max-width: 500px){
     .You-out{
       font-size: 40px;
   }
@@ -327,7 +326,21 @@ text-shadow:
       0 0 100px rgb(0, 255, 34),
       0 0 150px rgb(0, 255, 42);
 }
-    
+@media(max-width: 500px){
+  .success{
+    font-size: 120px;
+    margin: 80px auto;
+}
+}  
 .m{
   margin: 0 auto;
 }
+
+.again{
+  margin: -50px auto 50px auto;
+}
+#again{
+  display: none;
+}
+
+

@@ -14,6 +14,7 @@ use yii\web\UploadedFile;
 use Yii;
 use yii\helpers\ArrayHelper;
 use app\models\UploadForm;
+use app\models\ImageUpLoad;
 
 /**
  * TasksController implements the CRUD actions for Task model.
@@ -47,8 +48,13 @@ class TasksController extends Controller
     {
         $tasks = Task::find()->all();
 
+        $userId = Yii::$app->user->identity->id;
+        $userModel = User::find()->where(['id' => $userId])->one();
+        $userCountTasks = $userModel->cout_task;
+
         return $this->render('index', [
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'userCountTasks' => $userCountTasks
         ]);
     }
 
@@ -153,7 +159,7 @@ class TasksController extends Controller
         $product = $this->findModel($id);
             $file = UploadedFile::getInstance($model, 'image');
 
-            if ($product->saveImage($model->uploadFile($file, $product->image))) {
+            if ($product->saveImage($model->uploadFile($file))) {
                 return $this->redirect(['view', 'id' => $product->id]);
             }
         }
@@ -181,6 +187,9 @@ class TasksController extends Controller
             $taskPrice = Task::find()->where(['id' => $id])->one();
             $customer = User::find()->where(['id' => $userId])->one();
 
+            $taskCount = $customer->cout_task;
+            $customer->cout_task = $taskCount + 1;
+
             $money = $customer->money;
             $customer->money = $taskPrice->price + $money;
             $customer->save();
@@ -193,7 +202,6 @@ class TasksController extends Controller
             $completingId->saveImage($model->uploadFile($file), $numberTask);
             return $this->redirect(['success' , 'taskPrice' => $taskPrice, 'id' => $id]);
         }
-
         }
         return $this->render('image', [
             'model' => $model,
@@ -203,6 +211,15 @@ class TasksController extends Controller
 
 
 
-    
+
+
+    public function actionAgain(){
+        $userId = Yii::$app->user->id;
+        $customer = User::find()->where(['id' => $userId])->one();
+        $customer->money = 0;
+        $customer->cout_task = 0;
+        $customer->save();
+        return $this->redirect(['/site/inside']);
+    }
     
 }

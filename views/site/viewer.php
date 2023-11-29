@@ -3,192 +3,141 @@
 use app\models\Task;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\assets\MyAsset;
+use app\assets\ViewerAsset;
 
 /** @var yii\web\View $this */
 /** @var app\models\TaskFromViewer $model */
 /** @var ActiveForm $form */
 
-MyAsset::register($this);
+ViewerAsset::register($this);
 $this->title = 'Нерв';
 ?>
 
+<div class="flexmain">
+    <span class="nav">
+        <a onclick="playExit()" class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
+        <span class="glow-on-hover goh"><input class="full" type="button" value="⤡" onclick="toggleFullScreen(document.body)"></span>
+    </span>
 
 
-<div class="task-from">
-    <h1 class="tac">Задания от зрителей</h1>
-    <div class="listtask scroll" id="scrollTop">
-        <?php foreach ($allTasks as $oneTask) : ?>
-            <div class="col-sm-9">
-                <div class="wooo">
-                    <h5 class="taskviewer"><?= $oneTask->proposed_task ?></h5>
-                    <a onclick="playMusic()" class="like" href="<?= Url::toRoute(['site/like', 'id' => $oneTask->id]) ?>">👍</a>
-                    <span class="like"><?= $oneTask->like ?></span>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-
-    <div class="comment">
-        <?php $form = ActiveForm::begin([
-            'action' => ['site/viewer'],
-            'options' => ['class' => 'form-horizontal contact-form', 'role' => "form"]
-        ]) ?>
-        <div class="form-group">
-            <div class="col-md-12">
-                <?= $form->field($model, 'proposed_task')->textarea(['class' => 'form-control', 'placeholder' => 'Напиши своё задание'])->label(false) ?>
-            </div>
-        </div>
-        <button onclick="playButton()" type="submit" class="glow">Опубликовать</button>
-        <?php ActiveForm::end(); ?>
-        <h3 class="rules">Какие задания НЕ принимаются:</h3>
-        <ul>
-            <li>Приченяющие любой вред себе, другим людям и животным.</li>
-            <li>Написаные нецензурно или непонятно.</li>
-            <li>Нарушающие законодательство РФ.</li>
-        </ul>
-    </div>
-    
-</div>
-
-
-<div class="flex">
-
-<a onclick="playExit()" class="glow-on-hover" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
-
-    <div class="names scroll" id="scrollTop">
-        <h1 class="all-players">Все игроки</h1>
+    <div class="names" id="scrollTop">
+        <h1>Все игроки</h1>
         <?php foreach ($allUser as $oneUser) : ?>
-            <div class="col-sm-2">
-                <div class="wooo2">
-                    <a onclick="playExit()" class="like" href="<?= Url::toRoute(['site/show-video', 'id' => $oneUser->id]) ?>"><?= $oneUser->name ?></a>
-                </div>
+            <div>
+                <a onclick="playExit()" class="user-name" href="<?= Url::toRoute(['site/show-video', 'id' => $oneUser->id]) ?>"><?= $oneUser->name ?></a>
             </div>
         <?php endforeach; ?>
     </div>
 
+    <!------------------------------------------------------------------------------------------------>
+    <nav class="one">
+        <ul class="topmenu">
+            <li><a href="#">Все игроки<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <?php foreach ($allUser as $oneUser) : ?>
+                        <li class="lin">
+                            <a onclick="playExit()" class="user-name lin" href="<?= Url::toRoute(['site/show-video', 'id' => $oneUser->id]) ?>"><?= $oneUser->name ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <li><a href="#task">задания для игоков<i class="fa fa-angle-down"></i></a>
+            <li><a href="#task">правила<i class="fa fa-angle-down"></i></a>
+        </ul>
+    </nav>
 
-    <div class="list-video scroll">
-        <h1>Имя игрока: <?= $userOne->name ?></h1>
+    <!------------------------------------------------------------------------------------------------>
     
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoOne ?>" type="video/webm" />
+    <div class="all-video scroll">
+        <div class="container y mandatory-scroll-snapping" dir="ltr">
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoOne ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoTwo ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoTwo ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoThree ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoThree ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoFour ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoFour ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoFive ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoFive ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoSix ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoSix ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoSeven ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoSeven ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoEight ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoEight ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoNine ?>" type="video/webm" />
+            <div class="xx">
+                <video controls class="myvideo">
+                    <source src="<?= $videoNine ?>#t=0.1" type="video/mp4" />
                 </video>
             </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
         </div>
-        <div class="flex">
-            <div>
-                <video controls class="video">
-                    <source src="<?= $videoTen ?>" type="video/webm" />
-                </video>
-            </div>
-            <ul>
-            <li></li>
-                <li></li>
-            </ul>
-        </div>
-
     </div>
 
+    <h1 class="npl">видео игрока: <?= $userOne->name ?></h1>
 
+    <div class="task-from" id="task">
+        <h1 class="tac">Задания от зрителей</h1>
+        <div class="listtask scroll" id="scrollTop">
+            <?php foreach ($allTasks as $oneTask) : ?>
+                <div class="flex str">
+                    <h5 class="taskviewer"><?= $oneTask->proposed_task ?></h5>
+                    <div class="right">
+                        <span class="like"><?= $oneTask->like ?></span>
+                        <a onclick="playMusic()" class="like" href="<?= Url::toRoute(['site/like', 'id' => $oneTask->id]) ?>">👍</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
+        <div class="comment">
+            <?php $form = ActiveForm::begin([
+                'options' => ['data-pjax' => true],
+                'action' => ['site/viewer'],
+            ]); ?>
+            <div class="">
+                <div class="">
+                    <?= $form->field($model, 'proposed_task')->textarea(['class' => 'form-control', 'placeholder' => 'Напиши своё задание'])->label(false) ?>
+                </div>
+            </div>
+            <button onclick="playButton()" type="submit" class="glow">Опубликовать</button>
+            <?php ActiveForm::end(); ?>
 
+        </div>
 
-
-
+        <div class="rules">
+            <h3>Какие задания НЕ принимаются:</h3>
+            <ul>
+                <li>Приченяющие любой вред себе, другим людям и животным.</li>
+                <li>Написаные нецензурно или непонятно.</li>
+                <li>Нарушающие законодательство РФ.</li>
+            </ul>
+        </div>
+    </div>
 
 </div>
+

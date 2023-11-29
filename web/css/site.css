@@ -80,3 +80,33 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+/*------------------------------------- Скрол -----------------------------------------------------*/
+:root {
+    --scrollbarBg: rgba(2, 142, 74, 1);
+    --scrollbarThumb: rgb(255, 255, 255);
+    --scrollbarWidth: 6px;
+    --scrollbarBorder: 1px solid var(--scrollbarBg);
+    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+  }
+  .scroll {
+    scrollbar-width: var(--scrollbarWidth);
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+  }
+  .scroll::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+  }
+  .scroll::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+    border-radius: var(--scrollbarBorderRadius);
+  }
+  .scroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+  }
+  
+  .scroll {
+    overflow: auto;
+  }

@@ -105,6 +105,7 @@ public function actionShowVideo($id){
 
         $userOne = User::find()->where(['id' => $id])->one();
 
+        $task = Task::find()->all();
 
         return $this->render('viewer', [
             'allTasks' => $allTasks,
@@ -122,7 +123,7 @@ public function actionShowVideo($id){
             'videoNine' => $videoNine,
             'videoTen' => $videoTen,
             'userOne' => $userOne,
-            'taskName' => $taskName
+            'task' => $task,
         ]);
     }
 
@@ -137,9 +138,26 @@ public function actionShowVideo($id){
 
         $completing = Completing::find()->where(['id' => 21])->one();
         $videoOne = $completing->getImageOne();
+        $videoTwo = $completing->getImageTwo();
+        $videoThree = $completing->getImageThree();
+        $videoFour = $completing->getImageFour();
+        $videoFive = $completing->getImageFive();
+        $videoSix = $completing->getImageSix();
+        $videoSeven = $completing->getImageSeven();
+        $videoEight = $completing->getImageEight();
+        $videoNine = $completing->getImageNine();
+        $videoTen = $completing->getImageTen();
 
         $allTasks = TaskFromViewer::find()->all();
         $allUser = User::find()->where(['role' => 2])->all();
+
+        $userOne = User::find()->where(['id' => 1])->one();
+
+        $task = Task::find()->all();
+
+        $taskOne = Task::find()->where(['id' => 1])->one();
+        $taskTwo = Task::find()->where(['id' => 2])->one();
+        $taskThree = Task::find()->where(['id' => 3])->one();
 
         return $this->render('viewer', [
             'allTasks' => $allTasks,
@@ -147,6 +165,20 @@ public function actionShowVideo($id){
             'allUser' => $allUser,
             'completing' => $completing,
             'videoOne' => $videoOne,
+            'videoTwo' => $videoTwo,
+            'videoThree' => $videoThree,
+            'videoFour' => $videoFour,
+            'videoFive' => $videoFive,
+            'videoSix' => $videoSix,
+            'videoSeven' => $videoSeven,
+            'videoEight' => $videoEight,
+            'videoNine' => $videoNine,
+            'videoTen' => $videoTen,
+            'task' => $task,
+            'userOne' => $userOne,
+            'taskOne' => $taskOne,
+            'taskTwo' => $taskTwo,
+            'taskThree' => $taskThree
         ]);
     }
 
@@ -157,11 +189,25 @@ public function actionShowVideo($id){
         return $this->render('noaccess');
     }
     
+
+    public function actionRole(){
+        $userId = Yii::$app->user->identity->id;
+        $userModel = User::find()->where(['id' => $userId])->one();
+        if ($userModel->role != 2){
+            $userModel->role = 3;
+            $userModel->save();
+            
+            return $this->redirect('viewer-access');
+        } else {
+            return $this->render('noaccess');
+        }
+    }
+
     public function actionViewerAccess(){ 
         $userId = Yii::$app->user->identity->id;
         $userModel = User::find()->where(['id' => $userId])->one();
 
-            if ($userModel->role == 3) { // 3 - зритель
+            if ($userModel->role != 2) { // 3 - зритель
                 return $this->redirect(['viewer']);
             } else {
                 return $this->render('noaccess');

@@ -4,6 +4,7 @@
         document.getElementById('taskstart').style.visibility = 'hidden';
         document.getElementById("upload").style.visibility = 'hidden';
         document.getElementById("You-re-out").style.display = "block";
+        document.getElementById("again").style.display = "block";
     }
     
     function viewTask(){
@@ -35,7 +36,7 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-  var fiveMinutes = 60 * 1,
+  var fiveMinutes = 60 * 10,
       display = document.querySelector('#timer');
   startTimer(fiveMinutes, display);
 };

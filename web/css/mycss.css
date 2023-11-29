@@ -5,8 +5,8 @@
 }
 html, body {
   background-color: black;
-  overflow: hidden;
   font-family: 'ofont.ru_BebasNeue'; 
+  cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
 }
 .a{
   color: #fcfcfc;
@@ -44,6 +44,7 @@ html, body {
   left:50%;
   transform:translate(-50%, -50%);
 }
+
 .wrapper-inside{
   width: 90%;
   padding:5rem;
@@ -57,6 +58,11 @@ html, body {
     padding: 5px;
   }
 }
+.wrapper-profile{
+  margin: 0 auto;
+}
+
+
 .wrapper-viewer{
   width: 90%;
   padding:5rem;
@@ -67,7 +73,7 @@ html, body {
   left:50%;
   transform:translate(-50%, -50%);
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .wrapper-viewer{
     width: 100%;
     padding: 5px;
@@ -96,6 +102,7 @@ html, body {
   border-radius: 5px;
   animation:lightson .5s ease 3 forwards;
 }
+
 @keyframes lightson{
   0%{
     opacity:0;
@@ -146,6 +153,7 @@ html, body {
   }
 }
 
+
 @media(max-width: 789px){
   .wrapper{
      width: 100%;
@@ -161,6 +169,11 @@ html, body {
 /*----------------------------------------------- регистрация---------------------------------------*/
 .reg-form{
     margin: 250px auto 0;
+}
+@media(max-width: 500px){
+  .reg-form{
+    margin: 50px auto 0;
+}
 }
 /*Кнопка регистрации*/
 .glow-on-hover {
@@ -293,7 +306,7 @@ html, body {
   padding: 0 20px;
   letter-spacing: 5px;
 }
-@media(max-width: 390px){
+@media(max-width: 500px){
   .header{
     display: grid;
   }
@@ -301,30 +314,30 @@ html, body {
   /*----------------------------- зритель или игрок? -------------------------------------*/
   .or{
     margin: 40px auto;
-    letter-spacing: 5px;
   }
   @media(max-width: 1000px){
     .or{
       margin: 20px auto;
     }
   }
+  @media(max-width: 400px){
+    .or{
+      margin: 20px 10px;
+    }
+  }
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,900');
 
 .wrapper2{
-  width: 90%;
+  width: 80%;
   color:white;
   position: absolute;
-  top:70%;
   left:50%;
   transform:translate(-50%, -50%);
   display: flex;
 }
-@media(max-width: 1000px){
-  .wrapper2{
-    top: 84%;
-  }
-}
+
+
 /*--yellow--*/
 .yellow{
   padding: 10px;
@@ -447,7 +460,7 @@ html, body {
   font-size: 20px;
   letter-spacing: 4px;
   border-radius: 4px;
-  animation: yellows .5s ease 3 forwards;
+  animation: greenn .5s ease 3 forwards;
   width: 140px;
   height: 60px;
   border: 5px solid white;
@@ -510,6 +523,7 @@ html, body {
     letter-spacing: 2px;
   }
 }
+
   /*----------------------------- Настройки сайта в админке -------------------------------------*/
   .settings{
     position: relative;
@@ -530,10 +544,43 @@ html, body {
   width: 350px;
 text-align: center;
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .a-btn{
     width: 290px;
 }
+}
+.b-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 10px;
+  margin: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.5s;
+  width: 250px;
+text-align: center;
+}
+@media(max-width: 500px){
+  .b-btn{
+    width: 100px;
+    font-size: 13px;
+}
+}
+
+.c-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 10px;
+  margin: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.5s;
+  width: 250px;
+text-align: center;
 }
 
 .btns{
@@ -570,9 +617,9 @@ text-align: center;
 }
 /*----------------------------------------- Список заданий -------------------------------------*/
 .listtasks{
-margin: -50px auto;
+margin: -130px auto;
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .listtasks{
     margin: 0 auto;
 }
@@ -620,14 +667,18 @@ header>div:nth-child(10) {animation: ani 0.5s forwards 4.5s; margin: 0 0 0 -12px
 .noruls{
   text-align: center;
 }
-@media(max-width: 400px){
+@media(max-width: 500px){
   .no{
-    margin: -60px auto 180px auto;
+    margin: -50px auto 180px auto;
     font-size: 40px;
     text-align: center;
   }
 }
-
+@media(max-width: 500px){
+  .noruls{
+    margin: 50px auto 0 auto;
+  }
+}
 /*------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------*/
@@ -830,6 +881,7 @@ padding: 20px;
 
 
 .modal-content {
+  text-align: center;
     position: relative;
     background-color: #E1BEE7;
     margin: auto;
@@ -843,7 +895,7 @@ padding: 20px;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-@media(max-width: 390px){
+@media(max-width: 500px){
   .modal-content{
     width: 300px;
 }
@@ -859,10 +911,14 @@ padding: 20px;
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-
+@media(max-width: 500px){
+  .n{
+    display: none;
+}
+}
 
 .close {
-    color: white;
+    color: rgb(0, 0, 0);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -885,8 +941,361 @@ padding: 20px;
 .modal-body {padding: 2px 16px;}
 
 
-@media(max-width: 390px){
+@media(max-width: 500px){
   #showmoney{
     padding: 27px 0 0 0;
 }
+}
+
+.p{
+  padding: 5px;
+  color: #ffffff;
+}
+@media(max-width: 500px){
+  .p{
+    display: none;
+}
+}
+.p:hover{
+  text-decoration: none;
+  color: #444444;
+}
+#full{
+  background-color: #00000000;
+  border: none;
+}
+@media(max-width: 500px){
+  .p{
+    padding: 2px 0 0 0;
+}
+}
+
+
+.choice{
+  text-align: center;
+  margin: -230px auto;
+  font-size: 30px;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff,
+    0 0 80px #0ff,
+    0 0 90px #0ff,
+}
+@media(max-width: 500px){
+  .choice{
+    margin: -80px auto;
+}
+}
+.axtung{
+  margin: 250px auto;
+  font-size: 20px;
+  text-align: center;
+}
+@media(max-width: 500px){
+  .axtung{
+    margin: 100px auto;
+    color: white;
+    padding: 0 5px;
+}
+}
+
+.vibor{
+  margin: 300px 0 0 0;
+}
+
+.gfkrb{
+  margin:38px;
+}
+@media(max-width: 500px){
+  .gfkrb{
+    margin: 18px;
+}
+}
+
+.hidden {
+  display:none;
+}
+.canv {
+  width: 700px;
+  height:300px;
+}
+@media(max-width: 500px){
+  .canv{
+    width: 300px;
+  height:100%;
+  padding: 0;
+  margin: 0;
+}
+}
+
+.headerr{
+  font-size: 15px;
+  margin: 0 auto;
+  padding: 0 20px;
+  letter-spacing: 5px;
+}
+
+@media(max-width: 500px){
+  #wind{
+  display: none;
+  }
+}
+
+
+
+/*------------------------------------------- профиль --------------------------------------------------------*/
+.div-ava{
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+}
+@media(max-width: 500px){
+  .div-ava{
+    width: 95%;
+}
+}
+.avatar{
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+  border-radius:50%;
+}
+@media(max-width: 500px){
+  .avatar{
+    width: 150px;
+  height: 150px;
+  margin: 50px auto;
+}
+}
+
+
+.namepro{
+  color: white;
+  font-size: 50px;
+  margin: 80px 0 0 -400px;
+}
+@media(max-width: 500px){
+  .namepro{
+    margin: 50px auto;
+}
+}
+.btnava{
+  margin: 230px 0 0 90px;
+  width: 20px;
+  height: 20px;
+}
+.btnava:hover{
+  text-decoration: none;
+}
+.btnava:active{
+  color: #000;
+}
+@media(max-width: 500px){
+  .btnava{
+    margin: 180px 0 0 71px;
+    z-index: 222;
+}
+}
+
+
+.avaplus{
+  margin: 0 auto;
+}
+.shape-outer {
+  display: flex;
+  flex-shrink: 0;
+  height: calc(150px + 4vw);
+  width: calc(150px + 4vw);
+  background-image: linear-gradient(to bottom right, #ff3cac, #562b7c, #2b86c5);
+}
+
+.shape-inner {  
+  height: calc(130px + 4vw);
+  width: calc(130px + 4vw);
+  background-size: cover;
+  margin: auto;
+}
+
+.circle {
+  -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+}
+
+
+.form{
+  margin: 200px auto;
+}
+
+/*---------------------------------------------video prifile------------------------------------------------*/
+.yourvideo{
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  margin: 200px 0 50px 0;
+}
+.mylist{
+  display: flex;
+  margin: 0 auto;
+}
+.myvideo{
+  width: 150px;
+  height: 200px;
+}
+.vv:hover{
+  cursor: pointer;
+}
+.myvideo{
+  width: 210px;
+  height: 350px;
+}
+
+
+@media(max-width: 500px){
+  .rulpla{
+    font-size: 27px;
+  }
+}
+/*------------------------------------------ как войти на 1 станице ---------------------------------------------*/
+.how-inter{
+margin: 700px auto 0 auto;
+padding: 10px;
+font-size: 30px;
+color: white;
+background-color: #080808;
+width: 900px;
+}
+.how-inter2{
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  font-size: 30px;
+  color: white;
+  background-color: #080808;
+  width: 900px;
+}
+.summary{
+  letter-spacing: 6px;
+}
+.ul{
+  font-size: 20px;
+  margin: 30px 0 0 0;
+  list-style-type: none;
+}
+.li{
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+@media(max-width: 500px){
+  .how-inter{
+    width: 355px;
+    padding: 0;
+    font-size: 20px;
+    margin: 150px auto 0 auto;
+}
+.how-inter2{
+  width: 355px;
+  padding: 0;
+  font-size: 20px;
+}
+.ul{
+  font-size: 15px;
+  margin: 0 auto;
+  padding: 0 0 0 3px;
+}
+.li{
+  line-height: 25px;
+}
+}
+
+
+/*------------------------------------ видео инструкция ------------------------------------------------*/
+.vid{
+margin: 0 auto;
+}
+.seeme{
+  margin: 150px auto 30px auto;
+  text-align: center;
+  color: white;
+}
+.vivi{
+  width: 360px;
+  height: 600px;
+}
+@media(max-width: 500px){
+  .seeme{
+    font-size: 20px;
+  }
+}
+
+/*---------------------------------- плеер -----------------------------------------------------*/
+
+.playpouse{
+  margin: 170px 0 0 980px;
+  font-size: 70px;
+  z-index: 999;
+}
+
+.play:hover{
+  color: #ffffff;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+}
+.play:active{
+  color: #fff;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+}
+.pouse:hover{
+  color: #fff;
+  text-shadow:
+  0 0 20px #fff,
+  0 0 100px #0ff,
+  0 0 150px #0ff;
+}
+.pouse:active{
+  color: #fff;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+}
+@media(max-width: 500px){
+  .playpouse{
+    margin: 650px auto -30px auto;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px grey solid;
+    border-top: 1px grey solid;
+    text-align: center;
+    padding: 30px 0 30px 0;
+  }
+}
+@media(max-width: 500px){
+  .cen{
+    padding: 0 0 0 25%;
+  }
+}
+
+@media(max-width: 500px){
+  .play{
+    font-size: 75px;
+    margin: 3px 0 -2px 0;
+  }
 }
