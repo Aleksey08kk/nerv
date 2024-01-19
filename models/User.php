@@ -16,6 +16,7 @@ use yii\web\IdentityInterface;
  * @property string|null $userPhoto
  * @property string|null $modey
  * @property string|null $cout_task
+ * @property string|null $description
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -34,7 +35,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['isAdmin'], 'integer'],
-            [['name', 'email', 'password', 'userPhoto'], 'string', 'max' => 255],
+            [['name', 'email', 'password', 'userPhoto', 'description'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,19 +46,22 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Имя',
             'email' => 'Email',
             'password' => 'Password',
             'isAdmin' => 'Is Admin',
             'userPhoto' => 'User Photo',
+            'description' => 'Описание',
+            'cout_task' => 'Заданий выполнено',
+            'money' => 'Денегна счету'
         ];
     }
 
-    public static function findIdentity($id): User
+    public static function findIdentity($id)
     {
         return User::findOne($id);
     }
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -77,12 +81,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement findIdentityByAccessToken() method.
     }
 
-    public static function findByEmail(String $email): \yii\db\ActiveRecord
+    public static function findByEmail($email)
     {
         return User::find()->where(['email'=>$email])->one();
     }
 
-    public function validatePassword(String $password)
+    public function validatePassword($password)
     {
         return $this->password == $password;
     }
@@ -92,8 +96,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->save(false);
     }
 
+    
 
-    public function saveImage($filename)
+
+    public function saveImagee($filename)
     {
         $this->userPhoto = $filename;
         return $this->save(false);

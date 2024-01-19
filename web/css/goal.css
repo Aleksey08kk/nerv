@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'BlueCurve';
+    src: url(/fonts/ofont.ru_BlueCurve.ttf);
+}
+
+@font-face {
+    font-family: 'Onest.ttf';
+    src: url(/fonts/Onest.ttf);
+}
+
+html,
+body {
+    text-align: center;
+    background-color: black;
+    font-family: 'BlueCurve';
+    cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
+}
+
+.a {
+    color: #fcfcfc;
+    /*cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;*/
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #0ff,
+        0 0 80px #0ff,
+        0 0 90px #0ff,
+        0 0 100px #0ff,
+        0 0 150px #0ff;
+    /*cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;*/
+}
+.aa{
+    color: #272727;
+}
+.aa:hover{
+    text-decoration: none;
+    color: #272727;
+}
+/*------------------------------------------------- Зритель или игрок --------------------------------------------*/
+.whoyou {
+    color: white;
+    font-family: 'Onest.ttf';
+    margin-bottom: 50px;
+        font-size: 2rem;
+        animation: lights 5s 750ms linear infinite;
+}
+
+
+.gain-center {
+    transition: 1s;
+    /* Время эффекта */
+    text-align: center;
+}
+
+.gain-center:hover {
+    transform: scale(1.2);
+    /* Увеличиваем масштаб */
+}
+
+.vipl {
+    font-size: 2em;
+    color: #222;
+    letter-spacing: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.vipl:hover {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+/*------------------------------------------------- Назад -----------------------------------------------------*/
+.exit {
+    position: absolute;
+    left: 5px;
+    padding: 10px;
+}
+
+.exit:hover {
+    cursor: pointer;
+}
+
+
+
+
+/*------------------------------------------------- container -----------------------------------------------------*/
+.container {
+    margin: 30px auto;
+}
+
+/*------------------------------------------------- Сообщения -----------------------------------------------------*/
+h2 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.chatul{
+    z-index: 10;
+    height: 470px;
+    overflow: auto;
+    padding: 20px 0;
+}
+
+
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    /*box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);*/
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+    position: relative;
+    margin-bottom: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    max-width: 80%;
+}
+
+.message.left {
+    padding: 10px 20px 10px 70px;
+}
+
+.message.right {
+    align-self: flex-end;
+    padding: 10px 70px 10px 20px;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+
+.logo {
+    border-radius: 50%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.7);
+    object-fit: cover;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    width: 50px;
+    height: 50px;
+}
+
+.namelogo{
+    font-size: 15px;
+    color: white;
+    margin-left: 9px;
+}
+.message.right .logo {
+    left: auto;
+    right: 10px;
+}
+
+.message p {
+    margin: 0;
+}
+
+.text_input {
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 15px;
+    width: 100%;
+}
+.del{
+    margin: 0 -2px 0 10px;
+    width: 17px;
+}
+
+/*--------------------------------------------- Поле ввода комментария ---------------------------------------------------------*/
+.addtask {
+    width: 90%;
+    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+
+/*----------------------------------------------- glow on hover ---------------------------------------*/
+.glow-on-hover {
+    width: 90%;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: text;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+
+/*------------------------------------- Скрол -----------------------------------------------------*/
+:root {
+    --scrollbarBg: rgba(2, 142, 74, 1);
+    --scrollbarThumb: rgb(255, 255, 255);
+    --scrollbarWidth: 6px;
+    --scrollbarBorder: 1px solid var(--scrollbarBg);
+    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+}
+
+.scroll {
+    scrollbar-width: var(--scrollbarWidth);
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+}
+
+.scroll::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+    border-radius: var(--scrollbarBorderRadius);
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
+
+.scroll {
+    overflow: auto;
+}
+
+
+/*------------------------------------- Анимация перелива текста -------------------------------------------------*/
+@keyframes lights {
+    0% {
+      color: hsl(230, 40%, 80%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.2),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+        1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+    
+    30% { 
+      color: hsl(230, 80%, 90%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    40% { 
+      color: hsl(230, 100%, 95%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 90%, 0.5),
+        -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+        0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    70% {
+      color: hsl(230, 80%, 90%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    100% {
+      color: hsl(230, 40%, 80%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.2),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+        -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+    
+  }
+  
+  
+
+
+  @media(max-width: 900px) {
+    .vipl {
+        font-size: 2rem;
+        animation: lights 5s 750ms linear infinite;
+    }
+  }
+
+
+
+
+
+

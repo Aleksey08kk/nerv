@@ -71,9 +71,7 @@ $videoNine = $completing->getImageNine();
                 ]);
     }
 
-    public function actionNoaccessplayer(){
-        return $this->render('noaccessplayer');
-    }
+    
 
 
     public function actionRole(){
@@ -92,9 +90,7 @@ $videoNine = $completing->getImageNine();
             $userModel->role = 2;
             $userModel->save();
             return $this->redirect('access');
-        }else {
-            return $this->render('noaccessplayer');
-    }
+        }
 }
 
     public function actionAccess(){
@@ -130,8 +126,6 @@ $videoNine = $completing->getImageNine();
                     'videoNine' => $videoNine,
                     'task' => $task
                 ]);
-            } else {
-                return $this->render('noaccessplayer');
             }
     }
 

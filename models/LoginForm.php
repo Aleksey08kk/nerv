@@ -67,12 +67,15 @@ class LoginForm extends Model
      *
      * @return User
      */
+
+     
     public function getUser(): User
     {
         if ($this->_user === false) {
             $this->_user = User::findByEmail($this->email);
         }
-
-        return $this->_user;
+            return $this->_user;
     }
+
+    
 }

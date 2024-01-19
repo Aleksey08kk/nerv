@@ -1,44 +1,132 @@
 <?php
 
 use yii\helpers\Url;
-use yii\helpers\Html;
-use app\assets\MyAsset;
-use yii\widgets\ActiveForm;
+use app\assets\IndexAsset;
+use app\models\User;
+use app\models\Task;
 
-MyAsset::register($this);
+IndexAsset::register($this);
 
 /** @var yii\web\View $this */
 /** @var app\models\User $model */
 
-$this->title = 'Нерв';
+$this->title = 'Маскара';
 ?>
 
 
-<input class="glow-on-hover fullscreen n" type="button" value="⤡" onclick="toggleFullScreen(document.body)">
+
+<header class="header">
+    <img class="img-logo" src="img/logo.png" alt="">
+    <h1 class="logo-name">mackapa</h1>
+
+
+    <div class="login">
+        <?php if (Yii::$app->user->isGuest) : ?>
+            <a class="a headerr" href="<?= Url::toRoute(['auth/signup']) ?>">регистрация</a>
+            <a class="a headerr" href="<?= Url::toRoute(['auth/login']) ?>">войти</a>
+        <?php endif; ?>
+        <?php if (!Yii::$app->user->isGuest) : ?>
+            <a class="a header" href="<?= Url::toRoute(['/auth/logout']) ?>">выход (<?= Yii::$app->user->identity->name ?>)</a>
+        <?php endif; ?>
+    </div>
+</header>
+
+<!------------------------------------------------------------------------------------------------>
+<input type="checkbox" id="nav-toggle" hidden>
+<input type="checkbox" id="nav-toggle2" hidden>
+<!------------------------------------------------------------------------------------------------>
+
+<div class="block-video">
+    <div class="xx">
+        <?php foreach ($tapeModel as $tapeModels) : ?>
+            <video controls class="vivi">
+                <source src="<?= $tapeModels->getImage() ?>#t=0.1" />
+            </video>
+            <div class="name-and-task">
+                <a href="#" class="down" title="Нажмите чтоб открыть страницу игрока">
+                    <img class="img-ava" src="<?= User::find()->where(['id' => $tapeModels->user_id])->one()->getImage(); ?>" alt="info">
+                    <h1 class="player-name"><?= $tapeModels->name_player ?></h1>
+                </a>
+                <a href="#" class="link-task" title="Нажмите чтоб смотреть других игроков выполнивших это задание">
+                    <h1 class="player-task"><?= Task::find()->where(['number' => $tapeModels->tape_task])->one()->description;  ?></h1>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+
+<!------------------------------------ выдвигающаяся панель ------------------------------------------------>
+<nav class="nav">
+    <label id="click-to-hide" for="nav-toggle" class="nav-toggle" onclick></label>
+    <h2 class="logo">
+        <a href="#">0хх Маскара</a>
+    </h2>
+    <ul>
+        <li><a href="#1">Один</a>
+        <li><a href="#2">Два</a>
+        <li><a href="#3">Три</a>
+        <li><a href="#4">Четыре</a>
+        <li><a href="#5">Пять</a>
+        <li><a href="#6">Шесть</a>
+        <li><a href="#7">Семь</a>
+    </ul>
+</nav>
+
+<div class="mask-content"></div>
+
+
+<!------------------------------------ выдвигающаяся панель поиск ------------------------------------------------>
+
+<nav class="nav2">
+    <label id="hidden-element" for="nav-toggle2" class="nav-toggle2" onclick></label>
+    <h2 class="logo">
+        <a href="#">0xx Маскара поиск</a>
+    </h2>
+    <ul>
+        <li><a href="#1">
+                <div class="col-sm-4">
+                    <form method="get" action="<?= Url::to(['catalog/search']); ?>" class="pull-right">
+                        <div class="input-group">
+                            <input type="text" name="query" class="form-control" placeholder="Поиск по игрокам">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </a>
+        <li><a href="#2">Два</a>
+        <li><a href="#3">Три</a>
+        <li><a href="#4">Четыре</a>
+        <li><a href="#5">Пять</a>
+        <li><a href="#6">Шесть</a>
+        <li><a href="#7">Семь</a>
+    </ul>
+</nav>
+<div class="mask-content2"></div>
+
+
+
+
+
+
+
 <!----------------------------------------------гравная страница ------------------------------------------>
 <div class="wrapper-inside">
-  <h2 class="neon welcome">Добро пожаловать в . . .</h2>
-  <div class="blackpink">HEPB</div>
-  <div class="blackpink__tagline">
-
     <?php if (Yii::$app->user->identity->isAdmin) : ?>
       <a class="a header" href="<?= Url::toRoute(['/admin']) ?>">Админ</a>
     <?php endif; ?>
 
-    <a class="a header" id="myBtn">есть вопрос?</a>
-    <!--<a class="a header" href="<?= Url::toRoute(['/']) ?>">Часто задаваемые вопросы</a>-->
     <a class="a header" href="#video">правила игры</a>
     <a class="a header" href="<?= Url::toRoute(['/auth/logout']) ?>">выход (<?= Yii::$app->user->identity->name ?>)</a>
-
-  </div>
 </div>
 
 
 <!-------------------------------------------зритель или игрок?------------------------------------------>
-<div class="vibor">
-  <h2 class="choice">выбирай кто ты</h2>
-  <h3 class="axtung">После нажатия на одну из кнопок, информация о выборе запишется в базу. Содержание другой будет недоступно</h3>
-  <div class="wrapper2">
+<div class="vibor"> <div class="wrapper2">
     <a class="a yellow" href="<?= Url::toRoute(['site/role']) ?>">Зритель</a>
     <p class="or neon">или</p>
     <a class="a green" href="<?= Url::toRoute(['tasks/default/role']) ?>">Игрок</a>
@@ -48,34 +136,7 @@ $this->title = 'Нерв';
 
 
 <!--------------------------------------------------------------------------------------------------------->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-    </div>
-    <div class="modal-body">
-      <br>
-      <h1>вопросы и предложения</h1>
-      <br><br><br><br>
-      <a style="font-size:16px;font-weight:500;text-align:center;border-radius:8px;padding:10px 20px 10px 10px;background:#389ce9;text-decoration:none;color:#fff;" href="https://tttttt.me/Alekseyyeskel" target="_blank"><svg style="width:30px;height:20px;vertical-align:middle;margin:0px 5px;" viewBox="0 0 21 18">
-          <g fill="none">
-            <path fill="#ffffff" d="M0.554,7.092 L19.117,0.078 C19.737,-0.156 20.429,0.156 20.663,0.776 C20.745,0.994 20.763,1.23 20.713,1.457 L17.513,16.059 C17.351,16.799 16.62,17.268 15.88,17.105 C15.696,17.065 15.523,16.987 15.37,16.877 L8.997,12.271 C8.614,11.994 8.527,11.458 8.805,11.074 C8.835,11.033 8.869,10.994 8.905,10.958 L15.458,4.661 C15.594,4.53 15.598,4.313 15.467,4.176 C15.354,4.059 15.174,4.037 15.036,4.125 L6.104,9.795 C5.575,10.131 4.922,10.207 4.329,10.002 L0.577,8.704 C0.13,8.55 -0.107,8.061 0.047,7.614 C0.131,7.374 0.316,7.182 0.554,7.092 Z"></path>
-          </g>
-        </svg>Написать в телеграм</a>
-    </div>
-  </div>
-</div>
 
 <!--------------------------------------------------------------------------------------------------------->
-<div class="vid">
-  <h1 id="video" class="seeme">↓↓↓ посмотри меня ↓↓↓</h1>
-  <video controls class="vivi">
-    <source src="/sound/nerve.mp4" type="video/mp4" />
-  </video>
-</div>
-
 
 <!--------------------------------------------------------------------------------------------------------->
-<footer style="margin: 800px 0 0 0; padding: 0 0 0 30px;">
-  <h5 style="font-size: 15px;">Все права защищены© 2023г.</h5>
-</footer>

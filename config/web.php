@@ -49,6 +49,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'lobby' => 'webrtc/default/lobby',
+                'room' => 'webrtc/default/room',
+                'test' => 'webrtc/default/test'
             ],
         ],
         
@@ -59,6 +62,9 @@ $config = [
         ],
         'tasks' => [
             'class' => 'app\modules\tasks\Module',
+        ],
+        'webrtc' => [
+            'class' => 'app\modules\webrtc\Module',
         ],
     ],
     'params' => $params,

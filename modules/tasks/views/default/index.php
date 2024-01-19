@@ -13,7 +13,7 @@ $this->title = 'Нерв';
 ?>
 
 <div class="icons">
-<a class="glow-on-hover td" href="<?= Url::toRoute(['/site/inside']) ?>">🏃</a>
+<a class="glow-on-hover td" href="<?= Url::toRoute(['/site/index']) ?>">🏃</a>
 <span class="glow-on-hover pp" onclick="toggleFullScreen(document.body)"><p class="m">⤡</p></span>
 </div>
 <!------------------------------------------------------------------------------------------->

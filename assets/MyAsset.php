@@ -18,8 +18,7 @@ class MyAsset extends AssetBundle
         'css/mycss.css'
     ];
     public $js = [
-        'js/myjs.js',
-        'js/amim.js'
+        'js/myjs.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

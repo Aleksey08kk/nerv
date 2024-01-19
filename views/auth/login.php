@@ -1,10 +1,5 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-
-/* @var $model app\models\LoginForm */
-
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use app\assets\MyAsset;
@@ -13,6 +8,7 @@ MyAsset::register($this);
 
 $this->title = 'Вход';
 ?>
+
 
 <div class="reg-form">
 
@@ -34,8 +30,11 @@ $this->title = 'Вход';
 
     <?php ActiveForm::end(); ?>
 
+    
+    
+
 </div>
 
-<footer style="margin: 800px 0 0 0; padding: 0 0 0 30px;">
-    <h5 style="font-size: 15px;">Все права защищены© 2023г.</h5>
-    </footer>
+
+
+</html>

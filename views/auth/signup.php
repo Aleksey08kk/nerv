@@ -12,6 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="reg-form">
 
+<?php if( Yii::$app->session->hasFlash('success') ): ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?php echo Yii::$app->session->getFlash('success'); ?>
+    </div>
+<?php endif;?>
+
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'layout' => 'horizontal',
@@ -37,6 +44,3 @@ $this->params['breadcrumbs'][] = $this->title;
         
 
     
-<footer style="margin: 800px 0 0 0; padding: 0 0 0 30px;">
-    <h5 style="font-size: 15px;">Все права защищены© 2023г.</h5>
-    </footer>

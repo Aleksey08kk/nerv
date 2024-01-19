@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 
-
+use app\models\ImageUpLoad;
+use app\models\Subscription;
+use yii\web\UploadedFile;
 use app\models\Completing;
+use app\models\Tape;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -21,7 +24,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -32,7 +35,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -61,173 +64,156 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex(){
-        return $this->render('index', []);
-    }
-    public function actionInside(){
-        return $this->render('inside', []);
-    }
 
-    
-
-    public function actionPlayer()
+    public function actionIndex()
     {
-        $id = Yii::$app->user->identity->id;;
-        $model = Task::find()->where('id = :id', [':id' => $id])->one();
-        $task = $model->description; 
+        $tapeModel = Tape::find()->orderBy('RAND()')->all();
 
-        return $this->render('player', [
-            'task' => $task,
+        return $this->render('index', [
+            'tapeModel' => $tapeModel
         ]);
     }
 
-    
 
-public function actionShowVideo($id){ 
-        $model = new TaskFromViewer();
-        
-        $completing = Completing::find()->where(['user_id' => $id])->one();
-        $completingNum = $completing->id;
-        $completing = Completing::find()->where(['id' => $completingNum])->one();
-        $videoOne = $completing->getImageOne();
-        $videoTwo = $completing->getImageTwo();
-        $videoThree = $completing->getImageThree();
-        $videoFour = $completing->getImageFour();
-        $videoFive = $completing->getImageFive();
-        $videoSix = $completing->getImageSix();
-        $videoSeven = $completing->getImageSeven();
-        $videoEight = $completing->getImageEight();
-        $videoNine = $completing->getImageNine();
-        $videoTen = $completing->getImageTen();
+    public function actionProfile($userId)
+    {
+        $userModel = User::find()->where(['id' => $userId])->one();
+        $myId = Yii::$app->user->identity->id;
 
-        $allTasks = TaskFromViewer::find()->all();
-        $allUser = User::find()->where(['role' => 2])->all();
-
-        $userOne = User::find()->where(['id' => $id])->one();
-
-        $task = Task::find()->all();
-
-        return $this->render('viewer', [
-            'allTasks' => $allTasks,
-            'model' => $model,
-            'allUser' => $allUser,
-            'completing' => $completing,
-            'videoOne' => $videoOne,
-            'videoTwo' => $videoTwo,
-            'videoThree' => $videoThree,
-            'videoFour' => $videoFour,
-            'videoFive' => $videoFive,
-            'videoSix' => $videoSix,
-            'videoSeven' => $videoSeven,
-            'videoEight' => $videoEight,
-            'videoNine' => $videoNine,
-            'videoTen' => $videoTen,
-            'userOne' => $userOne,
-            'task' => $task,
+        return $this->render('profile', [
+            'userModel' => $userModel,
+            'myId' => $myId
         ]);
     }
 
-    public function actionViewer(){ 
-        $model = new TaskFromViewer();
+    public function actionMyprofile()
+    {
+        $myId = Yii::$app->user->identity->id;
+        $userModel = User::find()->where(['id' => $myId])->one();
+
+        $subsWho = Subscription::find()->where(['who' => $myId])->all();
+        $countWho = count($subsWho);
+        $subsWhom = Subscription::find()->where(['to_whom' => $myId])->all();
+        $countWhom = count($subsWhom);
+
+        return $this->render('myprofile', [
+            'userModel' => $userModel,
+            'myId' => $myId,
+            'countWho' => $countWho,
+            'countWhom' => $countWhom
+        ]);
+    }
+
+    public function actionSubscribe($otherUser)
+    {
+        $myid = Yii::$app->user->identity->id;
+
+        $userModel = User::find()->where(['id' => $otherUser])->one();
+
+        $customer = new Subscription();
+        $customer->who = $myid;
+        $customer->to_whom = $otherUser;
+        $customer->save();
+        return $this->render('profile', [
+            'userModel' => $userModel,
+            'userId' => $otherUser
+        ]);
+    }
+
+    public function actionSetImage()
+    {
         $userId = Yii::$app->user->identity->id;
-        if ($model->load(Yii::$app->request->post())) {
-            $model->user_id = $userId;
-            $model->save();
-            return $this->redirect(['viewer']);
+        $model = new ImageUpLoad;
+
+        if (Yii::$app->request->isPost) {
+            $user = User::find()->where(['id' => $userId])->one();
+            $file = UploadedFile::getInstance($model, 'image');
+
+            if ($user->saveImagee($model->uploadFile($file, $user->userPhoto))) {
+                return $this->redirect(['myprofile']);
+            }
         }
+        return $this->render('image', ['model' => $model]);
+    }
 
-        $completing = Completing::find()->where(['id' => 21])->one();
-        $videoOne = $completing->getImageOne();
-        $videoTwo = $completing->getImageTwo();
-        $videoThree = $completing->getImageThree();
-        $videoFour = $completing->getImageFour();
-        $videoFive = $completing->getImageFive();
-        $videoSix = $completing->getImageSix();
-        $videoSeven = $completing->getImageSeven();
-        $videoEight = $completing->getImageEight();
-        $videoNine = $completing->getImageNine();
-        $videoTen = $completing->getImageTen();
 
-        $allTasks = TaskFromViewer::find()->all();
-        $allUser = User::find()->where(['role' => 2])->all();
 
-        $userOne = User::find()->where(['id' => 1])->one();
 
-        $task = Task::find()->all();
 
-        $taskOne = Task::find()->where(['id' => 1])->one();
-        $taskTwo = Task::find()->where(['id' => 2])->one();
-        $taskThree = Task::find()->where(['id' => 3])->one();
 
-        return $this->render('viewer', [
-            'allTasks' => $allTasks,
-            'model' => $model,
-            'allUser' => $allUser,
-            'completing' => $completing,
-            'videoOne' => $videoOne,
-            'videoTwo' => $videoTwo,
-            'videoThree' => $videoThree,
-            'videoFour' => $videoFour,
-            'videoFive' => $videoFive,
-            'videoSix' => $videoSix,
-            'videoSeven' => $videoSeven,
-            'videoEight' => $videoEight,
-            'videoNine' => $videoNine,
-            'videoTen' => $videoTen,
-            'task' => $task,
-            'userOne' => $userOne,
-            'taskOne' => $taskOne,
-            'taskTwo' => $taskTwo,
-            'taskThree' => $taskThree
+    public function actionOnetasks($tasknum)
+    {
+        $tasknumber = $tasknum;
+        //$tapeModel = Tape::find()->orderBy('RAND()')->all();
+        $complModel = Completing::find()->all();
+
+
+        return $this->render('onetasks', [
+            //'tapeModel' => $tapeModel,
+            'tasknumber' => $tasknumber,
+            'complModel' => $complModel
         ]);
     }
 
 
 
 
-    public function actionNoaccess(){ 
-        return $this->render('noaccess');
-    }
-    
-
-    public function actionRole(){
+    public function actionRole()
+    {
         $userId = Yii::$app->user->identity->id;
         $userModel = User::find()->where(['id' => $userId])->one();
-        if ($userModel->role != 2){
+        if ($userModel->role != 2) {
             $userModel->role = 3;
             $userModel->save();
-            
+
             return $this->redirect('viewer-access');
-        } else {
-            return $this->render('noaccess');
         }
     }
 
-    public function actionViewerAccess(){ 
-        $userId = Yii::$app->user->identity->id;
-        $userModel = User::find()->where(['id' => $userId])->one();
 
-            if ($userModel->role != 2) { // 3 - зритель
-                return $this->redirect(['viewer']);
-            } else {
-                return $this->render('noaccess');
-            }
-    }
 
-    
-    public function actionLike($id){ 
+
+    public function actionLike($id)
+    {
         $customer = TaskFromViewer::find()->where(['id' => $id])->one();
         $like = $customer->like;
         $customer->like = $like + 1;
         $customer->save();
         return $this->redirect(['viewer']);
     }
-    
+
+
+    public function actionView($id)
+    {
+        $model = User::find()->where(['id' => $id])->one();
+        return $this->render('view', [
+            'model' => $model
+        ]);
+    }
+    public function actionUpdate($id)
+    {
+        $model = User::find()->where(['id' => $id])->one();
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['myprofile']);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+
+    public function actionInside()
+    {
+        $tapeModel = Tape::find()->orderBy('RAND()')->all();
+        return $this->render('inside', [
+            'tapeModel' => $tapeModel
+        ]);
+    }
+
+
+
 
     
-    
-
-
-
 }
-

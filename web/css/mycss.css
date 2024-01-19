@@ -30,6 +30,7 @@ html, body {
   cursor: url(https://assets.codepen.io/210284/hand-drawn.svg), default;
 }
 
+
 /*----------------------------- Первая заставка НЕРВ -------------------------------------*/
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,900');
@@ -1299,3 +1300,5 @@ margin: 0 auto;
     margin: 3px 0 -2px 0;
   }
 }
+
+

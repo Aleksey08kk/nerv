@@ -18,8 +18,7 @@ class ProfileAsset extends AssetBundle
         'css/profile.css'
     ];
     public $js = [
-        'js/myjs.js',
-        'js/amim.js'
+        'js/profile.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

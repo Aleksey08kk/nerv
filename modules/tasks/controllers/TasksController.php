@@ -3,6 +3,7 @@
 namespace app\modules\tasks\controllers;
 
 use app\models\Task;
+use app\models\Tape;
 use app\models\Completing;
 use app\models\TaskSearch;
 use yii\web\Controller;
@@ -30,7 +31,7 @@ class TasksController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -173,6 +174,7 @@ class TasksController extends Controller
         $userId = Yii::$app->user->identity->id;
         $customer = Task::find()->where(['id' => $id])->one();
         $taskPrice = $customer->price;
+        $player = User::find()->where(['id' => $userId])->one();
 
         $model = new UploadImage();
         
@@ -181,8 +183,8 @@ class TasksController extends Controller
             $task = $this->findModel($id);
             $file = UploadedFile::getInstance($model, 'image');
 
-            $task->status = 1;
-            $task->save();
+          //  $task->status = 1;
+           // $task->save();
 
             $taskPrice = Task::find()->where(['id' => $id])->one();
             $customer = User::find()->where(['id' => $userId])->one();
@@ -197,6 +199,10 @@ class TasksController extends Controller
             $numberTask = Task::find()->where(['id' => $id])->one();
             $numberTask = $numberTask->number;
             $completingId = Completing::find()->where(['user_id' => $userId])->one();
+
+            $video = 'video'; //столбец куда сохраняет видео. он идет как аргумент в saveImage
+            $tape = new Tape();
+            $tape->saveImage($model->uploadFile($file), $video, $userId, $player, $numberTask); //вот сюда video приходит
 
         if($completingId->id){
             $completingId->saveImage($model->uploadFile($file), $numberTask);

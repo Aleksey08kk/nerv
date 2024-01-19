@@ -18,8 +18,13 @@ class AuthController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['site/inside']);
+            if($model){
+                return $this->redirect(['site/myprofile']);
+            }
+        } else {
+            Yii::$app->session->setFlash('success', "Нет такого аккаунта. Зарегистируйтесь");
         }
+        
         return $this->render('login', [
             'model' => $model,
         ]);
