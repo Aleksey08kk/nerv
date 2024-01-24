@@ -62,7 +62,7 @@ $this->title = 'охх Маскара';
         <a href="#">0хх Маскара</a>
     </h2>
     <ul>
-        <li><a style="font-family: 'BlueCurve';" href="<?= Url::toRoute(['/webrtc/default/lobby']) ?>">Сейчас онлайн</a>
+        <li><a style="font-family: 'BlueCurve';" href="<?= Url::toRoute(['/webrtc/default/lobbyy']) ?>">Сейчас онлайн</a>
         <li><a style="font-family: 'BlueCurve';" href="<?= Url::toRoute(['video/index']) ?>">Смотреть задания</a>
         <li><a href="#3">Три</a>
         <li><a href="#4">Четыре</a>

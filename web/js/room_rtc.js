@@ -69,7 +69,6 @@ let joinStream = async () => {
 
     let player = `<div class="video__container" id="user-container-${uid}">
                     <div class="video-player" id="user-${uid}"></div>
-                    <a href="<?= Url::toRoute(['default/test', 'id' => "${uid}"]) ?>">перейти</a>
                  </div>`
 
     document.getElementById('streams__container').insertAdjacentHTML('beforeend', player)

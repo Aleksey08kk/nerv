@@ -12,7 +12,7 @@ MyAsset::register($this);
 ?>
 
 <div class="form flex">
-    <?php $form = ActiveForm::begin(['options' => ['accept' => 'image/*']]); ?>
+    <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'image')->fileInput(['maxlength' => true])->label('') ?>
     <div class="form-group">
         <?= Html::submitButton('отправить', ['class' => 'pink-btn c-btn']) ?>

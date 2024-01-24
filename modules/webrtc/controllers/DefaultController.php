@@ -19,15 +19,30 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
-    public function actionRoom()
+    public function actionRoom($player, $myid)
     {
-        $userId = Yii::$app->user->identity->id;
-        $userModel = User::find()->where(['id' => $userId])->one();
+        $userModel = User::find()->where(['id' => $myid])->one();
         return $this->render('room', [
-            'userModel' => $userModel
+            'userModel' => $userModel,
+            'player' => $player,
+            'myid' => $myid
         ]);
     }
-    public function actionLobby()
+
+    public function actionRoomm()
+    {
+        return $this->render('room');
+    }
+    public function actionLobby($id, $myid, $player)
+    {
+        return $this->render('lobby', [
+            'id' => $id,
+            'player' => $player,
+            'myid' => $myid
+        ]);
+    }
+
+    public function actionLobbyy()
     {
         return $this->render('lobby');
     }

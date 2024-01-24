@@ -16,15 +16,6 @@ ProfileAsset::register($this);
 
     <div class="container">
 
-
-
-        <h1>
-            <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'a izm']) ?>
-        </h1>
-
-
-
-
         <?= DetailView::widget([
             'model' => $model,
             'options' => [
@@ -44,10 +35,9 @@ ProfileAsset::register($this);
             ],
         ]) ?>
 
+        <h1><?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'blue-btn a-btn']) ?></h1>
 
-
-
-
+<br><br><br><br><br><br><br><br><br><br>
         <div>
             <?= Html::a('Выйти из аккаунта', ['auth/logout'], [
                 'class' => 'a subsli',
@@ -59,7 +49,7 @@ ProfileAsset::register($this);
             <br>
             <br>
             <?= Html::a('Удалить аккаунт', ['delete', 'id' => $model->id], [
-                'class' => 'a subsli',
+                'class' => 'a subsli red',
                 'data' => [
                     'confirm' => 'Уверены что хотите удалить аккаунт?',
                     'method' => 'post',

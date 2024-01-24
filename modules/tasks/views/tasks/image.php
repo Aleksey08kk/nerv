@@ -1,16 +1,11 @@
 <?php
 
-use app\models\Task;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\assets\GoalAsset;
 use yii\helpers\Url;
-use app\assets\MyTwoAsset;
 
-MyTwoAsset::register($this);
-
-use app\assets\MyAsset;
-
-MyAsset::register($this);
+GoalAsset::register($this);
 
 /** @var yii\web\View $this */
 /** @var app\models\Task $model */
@@ -19,48 +14,22 @@ MyAsset::register($this);
 $this->title = 'Игра началась';
 ?>
 
-<input class="glow-on-hover p" type="button" value="⤡" onclick="toggleFullScreen(document.body)">
-<!----------------------------------------------гравная страница------------------------------------------>
-<br><br>
-<h1 class="task" id="taskstart"><?= $taskDescription->description ?></h1>
-
-<h2 class="You-out" id="You-re-out">время истекло. ТЫ ВЫБЫЛ</h2>
-
-<span class="timer task" id="timer"></span>
-
-<div class="wrapper" id="btntaskstart">
-    <input class="pink-btn a-btn" type="button" value="Запустить таймер" onmousedown="viewTask()">
-</div>
-
-
-<div class="formfoto" id="upload">
-    <?php $form = ActiveForm::begin(['options' => ['accept'=>'video/*'], 'class' => 'bbttnn']); ?>
+<a class="a exit" href="<?= Url::toRoute(['/video/player']) ?>">←</a>
+<body>
+   
+<div class="formadd">
+    <?php $form = ActiveForm::begin(); ?>
     <div class="formfoto">
         <div>
-            <?= $form->field($model, 'image')->fileInput(['class' => 'bbttnn', 'maxlength' => true, 'accept'=>'video/*'])->label('') ?>
+            <?= $form->field($model, 'image')->fileInput(['class' => 'bbttnn', 'maxlength' => true])->label('') ?>
         </div>
         <div><?= Html::submitButton('Отправить', ['class' => 'pink-btn b-btn']) ?></div>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
 
+<h3 class="ruls">
+    Снимите инересное видео того как вы выполняете это задание и залейте на сайт. Зрители будут оставлять как простые лайки так и лайки-монеты. 1 лайк-монета стоит реальных денег. Накопите нужную сумму и переводите себе на карту.
+</h3>
 
-<div class="again" id="again">
-    <?= Html::a('Начать заново', ['tasks/again'], ['class' => 'blue-btn a-btn']) ?>
-</div>
-
-<!--
-<form class="form" action="image.php" method="post" enctype="multipart/form-data">
-    <input type="file" id="videoFile" name='camera' capture="environment" accept="video/*" />
-    <button id="button" class="buttonAuthorization" type="submit">загрузить</button>
-</form>
--->
-
-
-<!---- звук при нажатии
-<input type="button" value="sound" onclick="playMusic()" />
-function playMusic(){
-  var music = new Audio('/sound/knopka1.mp3');
-  music.play();
-  }
--->
+</body>

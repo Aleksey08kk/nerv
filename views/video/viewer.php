@@ -1,6 +1,5 @@
 <?php
 
-use app\models\TaskFromViewer;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\assets\GoalAsset;
@@ -21,13 +20,14 @@ $this->title = 'охх Маскара';
         <div class="chatul scroll" id="chatul">
             <ul class="chat">
                 <?php foreach ($tasks as $task) : ?>
+                    <br>
                     <h5 class="namelogo"><?= User::find()->where(['id' => $task->user_id])->one()->name; ?></h5>
-                    <li class="message left">
+                    <li class="message left glow-task">
                         <img class="logo" src="<?= User::find()->where(['id' => $task->user_id])->one()->getImage(); ?>" alt="аватарка">
                         <div style="display: flex;">
                             <p><?= $task->proposed_task ?></p>
                             <?php if (Yii::$app->user->identity->isAdmin || $userId == $task->user_id) : ?>
-                                <a href="<?= Url::toRoute(['video/delete', 'id' => $task->id]) ?>"><img class="del" src="/img/remove.svg"></a>
+                                <a  class="del" href="<?= Url::toRoute(['video/delete', 'id' => $task->id]) ?>"><img class="imgx" src="/img/delete.svg"></a>
                             <?php endif; ?>
                         </div>
                     </li>

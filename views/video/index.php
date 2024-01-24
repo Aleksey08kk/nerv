@@ -12,17 +12,19 @@ $this->title = 'охх Маскара';
 
 <body style="justify-content: center;
     align-items: center;">
-    
 
-<h1 class="whoyou">Выбирайте кто вы:</h1>
 
-<a class="vipl" href="viewer">Зритель</a>
-<br>
-<p>или</p>
-<br>
-<a class="vipl" href="player">Игрок</a>
+    <h1 class="whoyou">Выбирайте кто вы:</h1>
 
-<br><br><br>
-<a class="aa" href="/site/index"><p>на главную</p></a>
+    <div class="flex">
+        <a class="blue-btn c-btn" href="viewer">Зритель</a>
+        <p class="or">или</p>
+        <a class="pink-btn c-btn" href="player">Игрок</a>
+    </div>
+
+    <br><br><br>
+    <a class="aa" href="/site/index">
+        <p>на главную</p>
+    </a>
 
 </body>

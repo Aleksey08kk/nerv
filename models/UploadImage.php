@@ -12,13 +12,14 @@ class UploadImage extends Model{
     public function rules(){
         return[
             [['image'], 'required'],
-            [['image'], 'file', 'extensions' => 'png, jpg, mp4'],
+            [['image'], 'file', 'extensions' => 'png, jpg, mp4, MOV, AVI, MPEG-4'],
         ];
     }
 
     
 
     public function uploadFile($file){
+
         $this->image = $file;
         return $this->saveImage();
     }

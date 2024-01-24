@@ -1,11 +1,12 @@
 <?php
 
 namespace app\controllers;
-use app\models\Task;
 use app\models\TaskFromViewer;
-use app\models\User;
+use app\models\UploadImage;
+use app\models\Video;
 use Yii;
-use yii\web\NotFoundHttpException;
+use app\models\ImageUpLoad;
+use yii\web\UploadedFile;
 
 class VideoController extends \yii\web\Controller
 {
@@ -21,7 +22,7 @@ class VideoController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = $userId;
             $model->save();
-            return $this->redirect(['viewer']);
+            //return $this->redirect(['viewer']);
         }
 
         $tasks = TaskFromViewer::find()->all();
@@ -32,6 +33,25 @@ class VideoController extends \yii\web\Controller
         ]);
     }
 
+    public function actionPlayer()
+    {
+        $model = new TaskFromViewer();
+        $userId = Yii::$app->user->identity->id;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = $userId;
+            $model->save();
+           // return $this->redirect(['player']);
+        }
+
+        $tasks = TaskFromViewer::find()->all();
+        return $this->render('player', [
+            'tasks' => $tasks,
+            'model' => $model,
+            'userId' => $userId
+        ]);
+    }
+
+    
 
     public function actionView($id)
     {
@@ -60,6 +80,25 @@ class VideoController extends \yii\web\Controller
         $model = TaskFromViewer::find()->where(['id' => $id])->one()->delete();
         return $this->redirect(['viewer']);
     }
+
+
+
+    public function actionSetImage($taskid, $myid)
+    {
+        //$model = new ImageUpLoad;
+        $model = new UploadImage;
+
+        if (Yii::$app->request->isPost) {
+            $video = new Video();
+            $file = UploadedFile::getInstance($model, 'image');
+
+            if ($video->saveImage($model->uploadFile($file), $taskid, $myid)) {
+                return $this->redirect(['/site/index']);
+            }
+        }
+        return $this->render('image', ['model' => $model]);
+    }
+
 
 }
 
