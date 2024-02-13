@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'BlueCurve';
+  src: url(/fonts/ofont.ru_BlueCurve.ttf);
+}
+
+@font-face {
+  font-family: 'Onest.ttf';
+  src: url(/fonts/Onest.ttf);
+}
+.logomask{
+  padding: 20px;
+}
+@media (max-width: 600px) {
+  .logomask {
+    padding: 10px;
+  }
+}
 .container {
   margin-top: 74px;
   height: clac(100vh - 74px);
@@ -344,7 +361,7 @@
 /*-------------------------------------------------------------------------------------------------*/
 .glow-on-hover {
   position: fixed;
-  bottom: -200px;
+  bottom: -150px;
   border-radius: 8px;
   left:50%;
   transform: translateX(-50%);
@@ -361,8 +378,13 @@
   border-radius: 10px;
   font-size: 40px;
   text-align: center;
+  font-family: 'BlueCurve';
 }
-
+@media (max-width: 600px) {
+  .glow-on-hover {
+    bottom: -50px;
+  }
+}
 
 .glow-on-hover:before {
   content: '';
@@ -394,6 +416,85 @@
 }
 
 .glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+/*--------------------------------------- Удалить комнату ----------------------------------------------------------*/
+.glowdel {
+  position: fixed;
+  bottom: -220px;
+  border-radius: 8px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  width: 300px;
+  height: 100px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'BlueCurve';
+  text-decoration: none;
+  padding: 10px;
+  left: -23px;
+}
+@media (max-width: 600px) {
+  .glowdel {
+    bottom: 0px;
+    left: 50%;
+    position: absolute;
+    width: 200px;
+  }
+}
+.glowdel:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glowdel:active {
+  color: #000
+}
+
+.glowdel:active:after {
+  background: transparent;
+}
+
+.glowdel:hover:before {
+  opacity: 1;
+}
+
+.glowdel:after {
   z-index: -1;
   content: '';
   position: absolute;

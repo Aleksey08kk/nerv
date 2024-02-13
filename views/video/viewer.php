@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use app\assets\GoalAsset;
 use app\models\User;
 
+//use kartik\widgets\StarRating;
+
 GoalAsset::register($this);
 /** @var yii\web\View $this */
 
@@ -12,7 +14,7 @@ $this->title = 'охх Маскара';
 ?>
 
 <body>
-    <a class="a exit" href="<?= Url::toRoute(['index']) ?>">←</a>
+    <a class="a exit" href="<?= Url::toRoute(['site/index']) ?>">←</a>
 
 
     <div class="container">
@@ -26,17 +28,99 @@ $this->title = 'охх Маскара';
                         <img class="logo" src="<?= User::find()->where(['id' => $task->user_id])->one()->getImage(); ?>" alt="аватарка">
                         <div style="display: flex;">
                             <p><?= $task->proposed_task ?></p>
-                            <?php if (Yii::$app->user->identity->isAdmin || $userId == $task->user_id) : ?>
-                                <a  class="del" href="<?= Url::toRoute(['video/delete', 'id' => $task->id]) ?>"><img class="imgx" src="/img/delete.svg"></a>
+                            <?php if ($admin || $userId == $task->user_id) : ?>
+                                <a class="del" href="<?= Url::toRoute(['video/delete', 'id' => $task->id]) ?>"><img class="imgx" src="/img/delete.svg"></a>
                             <?php endif; ?>
                         </div>
                     </li>
+
+
+                    <!-----------------------------------------звезды------------------------------------------------->
+                    <div class="stars">
+                        <?php
+                        if (is_null($task->stars)) {
+                            $stars = 0;
+                        } else {
+                            $stars = $task->stars / $task->count_vote;
+                        }
+                        if ($task->stars > 0) {
+                            echo app\models\StarRating::widget([
+                                'name' => 'rating_21',
+                                'value' => $stars,
+                                'pluginOptions' => [
+                                    'disabled' => (bool)Yii::$app->user->isGuest,
+                                    'showClear' => false,
+                                    'showCaption' => false,
+                                    'min' => 0,
+                                    'max' => 5,
+                                    'step' => 1,
+                                    'size' => 'xs',
+                                    'language' => 'ru',
+                                ],
+                                'pluginEvents' => [
+                                    'rating:change' => "function(event, value, caption){
+                                    $.ajax({
+                                    url: '/video/stars',
+                                    method: 'post',
+                                    data:{
+                                    stars:value,
+                                    id: '$task->id',
+                                    coutVote: 1,
+                                    },
+                                    dataType:'json',
+                                    success:function(data){
+                                    //console.log(data);
+                                    $('message').html(data);
+                                    }
+                                    });
+                                    }"
+                                ],
+                            ]);
+                        } else {
+                            echo app\models\StarRating::widget([
+                                'name' => 'rating_21',
+                                'pluginOptions' => [
+                                    'disabled' => Yii::$app->user->isGuest ? true : false,
+                                    'showClear' => false,
+                                    'showCaption' => false,
+                                    'min' => 0,
+                                    'max' => 5,
+                                    'step' => 1,
+                                    'size' => 'xs',
+                                    'language' => 'ru',
+                                ],
+                                'pluginEvents' => [
+                                    'rating:change' => "function(event, value, caption){
+                                    $.ajax({
+                                    url: '/video/stars',
+                                    method: 'post',
+                                    data:{
+                                    stars:value,
+                                    id: '$task->id',
+                                    coutVote: 1,
+                                    },
+                                    dataType:'json',
+                                    success:function(data){
+                                    //console.log(data);
+                                    $('message').html(data);
+                                    }
+                                    
+                                    });
+                                    }"
+                                ],
+                            ]);
+                        }
+                        ?>
+                        <p class="vote"><?= $task->count_vote ?></p>
+                    </div>
+
                 <?php endforeach; ?>
             </ul>
         </div>
 
         <div class="comment">
             <?php $form = ActiveForm::begin(); ?>
+            <?= $form->field($model, 'task_name')->textinput(['class' => 'glow-on-hover', 'placeholder' => 'Дайте короткое название заданию'])->label(false) ?>
             <?= $form->field($model, 'proposed_task')->textarea(['class' => 'glow-on-hover', 'placeholder' => 'Напишите своё задание тут'])->label(false) ?>
             <?php if (!Yii::$app->user->isGuest) : ?>
                 <button type="submit" class="glow-on-hover">Опубликовать</button>
@@ -50,7 +134,7 @@ $this->title = 'охх Маскара';
     </div>
 
 
-
+<br><br><br>
 
 
 

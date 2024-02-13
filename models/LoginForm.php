@@ -27,6 +27,7 @@ class LoginForm extends Model
     {
         return [
             [['email', 'password'], 'required'],
+           // ['email', 'validateEmail'],
             ['rememberMe', 'boolean'],
             ['password', 'validatePassword'],
         ];
@@ -43,12 +44,22 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect email or password.');
             }
         }
     }
+    /*
+    public function validateEmail($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validateEmail($this->email)) {
+                $this->addError($attribute, 'Incorrect email or password.');
+            }
+        }
+    }
+    */
 
     /**
      * Logs in a user using the provided email and password.
@@ -69,13 +80,20 @@ class LoginForm extends Model
      */
 
      
-    public function getUser(): User
+     
+    public function getUser()
     {
         if ($this->_user === false) {
             $this->_user = User::findByEmail($this->email);
+        } else {
+            $this->addError('Не правильный логин или пароль');
         }
+        
             return $this->_user;
     }
+   
+
+    
 
     
 }

@@ -81,3 +81,10 @@ function viewMoney(){
 
 
 
+function preload(){
+    document.getElementById("pre").style.display = "block";
+    document.getElementById('ffoo').style.visibility = 'hidden';
+  };
+
+
+  

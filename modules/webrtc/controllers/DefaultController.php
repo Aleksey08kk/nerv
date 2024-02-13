@@ -2,6 +2,8 @@
 
 namespace app\modules\webrtc\controllers;
 
+use app\models\Stream;
+use app\models\Task;
 use yii\web\Controller;
 use Yii;
 use app\models\User;
@@ -17,34 +19,56 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $streamModel = Stream::find()->all();
+        return $this->render('index', [
+            'streamModel' => $streamModel,
+        ]);
     }
-    public function actionRoom($player, $myid)
+   /* public function actionRoomm($myid, $taskid)
     {
+        $customer = new Task();
+        $customer->user_id = $myid;
+        $customer->task_name = $taskid;
+        $customer->save();
         $userModel = User::find()->where(['id' => $myid])->one();
         return $this->render('room', [
             'userModel' => $userModel,
-            'player' => $player,
-            'myid' => $myid
+            'myid' => $myid,
+            'taskid' => $taskid
         ]);
     }
-
-    public function actionRoomm()
+*/
+    public function actionRoom()
     {
         return $this->render('room');
     }
-    public function actionLobby($id, $myid, $player)
+    public function actionLobby($taskid, $myid) 
     {
+        if(!Stream::find()->where(['user_id' => $myid])->andWhere(['task_id' => $taskid])->one()){
+            $customer = new Stream();
+            $customer->user_id = $myid;
+            $customer->task_id = $taskid;
+            $customer->save();
+        }
+        
+        $taskModel = Task::find()->all();
+        $userModel = User::find()->where(['id' => $myid])->one();
+        $username = $userModel->name;
         return $this->render('lobby', [
-            'id' => $id,
-            'player' => $player,
-            'myid' => $myid
+            'taskid' => $taskid,
+            'myid' => $myid,
+            'userModel' => $userModel,
+            'taskModel' => $taskModel,
+            'username' => $username
         ]);
     }
 
-    public function actionLobbyy()
+    public function actionLobbyy($taskid, $username) //функция вызывается из списка стримов
     {
-        return $this->render('lobby');
+        return $this->render('lobby', [
+            'taskid' => $taskid,
+            'username' => $username
+        ]);
     }
 
 
@@ -54,4 +78,13 @@ class DefaultController extends Controller
             'id' => $id
         ]);
     }
+
+    public function actionDelroom($myid, $taskid)
+    {
+        $streamModel = Stream::find()->where(['user_id' => $myid])->andWhere(['task_id' => $taskid])->one();
+        $streamModel->delete();
+        return $this->redirect(['/site/index']);
+    }
+    
+
 }

@@ -32,6 +32,20 @@ $this->title = 'охх Маскара';
         </div>
 
 
+        <div class="allvideo">
+            <?php foreach ($videoModel as $video) : ?>
+                <div class="card">
+                    <video controls class="vivi">
+                        <source src="<?= $video->getImage() ?>#t=0.1" />
+                    </video>
+                    <div class="mytask">
+                        <span class="link-task" title="Нажмите чтоб смотреть других игроков выполнивших это задание">
+                            <h1 class="player-task"><?= Html::a($video->task, ['site/onetasks', 'tasknum' => $video->task], ['class' => 'player-task']) ?></h1>
+                        </span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
 
 

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\TaskFromViewer;
+use app\models\Video;
 
 /**
- * TaskFromViewerSearch represents the model behind the search form of `app\models\TaskFromViewer`.
+ * VideoSearch represents the model behind the search form of `app\models\Video`.
  */
-class TaskFromViewerSearch extends TaskFromViewer
+class VideoSearch extends Video
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class TaskFromViewerSearch extends TaskFromViewer
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['proposed_task', 'stars', 'count_vote'], 'safe'],
+            [['id', 'user_id', 'like', 'coins'], 'integer'],
+            [['video', 'task', 'description', 'date'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class TaskFromViewerSearch extends TaskFromViewer
      */
     public function search($params)
     {
-        $query = TaskFromViewer::find();
+        $query = Video::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,14 @@ class TaskFromViewerSearch extends TaskFromViewer
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'like' => $this->like,
+            'coins' => $this->coins,
+            'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'proposed_task', $this->proposed_task])
-            ->andFilterWhere(['like', 'like', $this->like]);
+        $query->andFilterWhere(['like', 'video', $this->video])
+            ->andFilterWhere(['like', 'task', $this->task])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

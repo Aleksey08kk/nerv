@@ -13,7 +13,6 @@ $this->title = 'охх Маскара';
 <body style="justify-content: center;
     align-items: center;">
 
-
     <h1 class="whoyou">Выбирайте кто вы:</h1>
 
     <div class="flex">

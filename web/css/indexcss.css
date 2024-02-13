@@ -153,6 +153,7 @@ body {
   border-radius: 10px;
   overflow: auto;
   scroll-snap-type: y mandatory;
+  
 }
 
 .xx::-webkit-scrollbar {
@@ -165,9 +166,11 @@ body {
 }
 .vivi {
   scroll-snap-align: start;
-  width: 360px;
+  width: 100%;
+  height: 100%;
   display: block;
   overflow: auto;
+  object-fit: cover;
 }
 @media(max-width: 500px){
   .vivi{
@@ -293,8 +296,16 @@ body {
 */
 
 .nav-toggle:after {
-    content: '\2630';
-    text-decoration: none;
+  content: ' ';
+  display: block;
+  background: url('../img/room.svg') no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  stroke-width: 5px;
+  text-decoration: none;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
 }
 
 
@@ -364,7 +375,15 @@ body {
 */
 
 [id='nav-toggle']:checked ~ .nav > .nav-toggle:after {
-    content: '\2715';
+  content: ' ';
+  display: block;
+  background: url('../img/exit.svg') no-repeat;
+  background-size: contain;
+  height: 14px;
+  width: 14px;
+  text-decoration: none;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
 }
 
 
@@ -682,17 +701,15 @@ body {
 }
 
 
-/* определяем текст кнопки 
-* символ Unicode (TRIGRAM FOR HEAVEN)
-*/
+
 
 .nav-toggle2:after {
   content: ' ';
   display: block;
-  background: url('../img/lupa.svg') no-repeat;
+  background: url('../img/choice.svg') no-repeat;
   background-size: contain;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   text-decoration: none;
   -webkit-filter: drop-shadow( 1px 1px 2px black);
   filter: drop-shadow( 1px 1px 2px black);
@@ -1036,8 +1053,10 @@ body {
   transition: opacity .5s, visibility .5s;
 }
 
-
-
+.hhh{
+  color: white;
+}
+/*------------------------------------------------------------------------------------------------------------------*/
 
 
 
@@ -1094,4 +1113,79 @@ body {
   font-size: 16px;
   font-family: "Lucida Grande", "Arial", sans-serif;
   width: 760px;
+}
+
+/*------------------------------------------------- Назад -----------------------------------------------------*/
+.exit {
+  padding: 10px;
+}
+
+.exit:hover {
+  cursor: pointer;
+}
+
+
+/*------------------------------------------------- Лайки -----------------------------------------------------*/
+/*------------------------------------------------- Лайки -----------------------------------------------------*/
+/*------------------------------------------------- Лайки -----------------------------------------------------*/
+.likebl{
+  margin: -90% 0 90% 10px;
+  display: grid;
+}
+
+.likecount{
+  color: white;
+  margin: 0 0 0 4px;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
+  font-size: 15px;
+}
+
+.likee:after {
+  content: ' ';
+  display: block;
+  background: url('../img/like.svg') no-repeat;
+  background-size: contain;
+  height: 20px;
+  width: 22px;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
+}
+.likeful:after {
+  content: ' ';
+  display: block;
+  background: url('../img/likered.svg') no-repeat;
+  background-size: contain;
+  height: 20px;
+  width: 22px;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
+  z-index: 999;
+}
+
+
+
+
+.coin {
+  text-shadow: 1px 1px 2px black;
+  padding: 0 0 10px 0;
+  color: #dadada;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.coin:after {
+  content: ' ';
+  display: block;
+  background: url('../img/coin.svg') no-repeat;
+  background-size: contain;
+  height: 25px;
+  width: 25px;
+  text-decoration: none;
+  -webkit-filter: drop-shadow( 1px 1px 2px black);
+  filter: drop-shadow( 1px 1px 2px black);
 }

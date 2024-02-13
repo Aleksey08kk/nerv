@@ -90,6 +90,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->password == $password;
     }
+    /*public function validateEmail($email)
+    {
+        return $this->email == $email;
+    }
+    */
 
     public function create()
     {

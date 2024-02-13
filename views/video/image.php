@@ -11,15 +11,21 @@ MyAsset::register($this);
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="form flex">
-    <?php $form = ActiveForm::begin(['options' => ['accept' => 'image/*']]); ?>
+
+  <div class="form flex" id="ffoo">
+    <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'image')->fileInput(['maxlength' => true])->label('') ?>
     <div class="form-group">
-        <?= Html::submitButton('отправить', ['class' => 'pink-btn c-btn']) ?>
+      <div onclick="preload()"><?= Html::submitButton('отправить', ['class' => 'pink-btn c-btn']) ?></div>
     </div>
     <?php ActiveForm::end(); ?>
+  </div>
+
+
+<div class="pre" id="pre">
+
+<div class="progress">
+  <div class="progress-value"></div>
 </div>
 
-
-
-
+</div>

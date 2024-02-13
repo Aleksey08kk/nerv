@@ -3,7 +3,6 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
-use app\assets\AppAsset;
 use yii\bootstrap4\Html;
 
 //AppAsset::register($this);
@@ -14,8 +13,6 @@ use yii\bootstrap4\Html;
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 
 <head>
-
-
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -24,7 +21,7 @@ use yii\bootstrap4\Html;
 
     <link rel="apple-touch-icon" href="img/icon.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/icon.png">
-
+    <?= Html::csrfMetaTags() ?>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"> 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="google" content="notranslate">
@@ -35,7 +32,7 @@ use yii\bootstrap4\Html;
     <?php $this->head() ?>
 </head>
 
-<body class="d-flex flex-column h-100 cursor scroll">
+<body class="d-flex flex-column h-100 cursor">
     <?php $this->beginBody() ?>
 
 

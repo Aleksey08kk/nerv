@@ -1,24 +1,19 @@
 <?php
+
+use app\assets\LobbyAsset;
+use app\models\User;
 use yii\helpers\Url;
-use app\assets\IndexAsset;
-IndexAsset::register($this);
+
+LobbyAsset::register($this);
 /** @var yii\web\View $this */
 $this->title = 'охх Маскара';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>index</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
 
-<a href="<?= Url::toRoute(['default/lobby']) ?>">lobby</a>
-<!--<a href="<?= Url::toRoute(['default/room']) ?>">room</a>-->
+<?php foreach ($streamModel as $room) : ?>
+    <a href="<?= Url::toRoute(['default/lobbyy', 'taskid' => $room->task_id, 'username' => User::find()->where(['id' => $room->user_id])->one()->name]) ?>">комната</a>                
+<?php endforeach; ?>
 
 
-</body>
+
 </html>

@@ -25,43 +25,61 @@ $this->title = 'охх Маскара';
             </a>
        </div>
 
-        <div id="nav__links">
-            <a class="nav__link" id="create__room__btn" href="lobby.html">
-                Create Room
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ede0e0" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/></svg>
-            </a>
-        </div>
+      <!--  <div class="font" id="nav__links">
+            Создание комнаты
+        </div>-->
     </header>
 
     <main id="room__lobby__container">
         
         <div id="form__container">
              <div id="form__container__header">
-                 <p>👋 Create or Join Room</p>
+               <p style="font-size: 20px;" class="font">Вход в комнату</p>
              </div>
  
- 
+ <!--
             <form id="lobby__form">
-            <?= $myid ?>
                  <div class="form__field__wrapper">
                      <label>Your Name</label>
-                     <input type="text" name="name" value="<?= $player ?>" />
+                     <input type="text" name="name" value="?= $userModel->name ?>" />
                  </div>
  
                  <div class="form__field__wrapper">
                      <label>Room Name</label>
-                     <input type="text" name="room"  value="<?= $id ?>" />
+                     <input type="text" name="room"  value="?= $taskid ?>" />
                  </div>
  
                  <div class="form__field__wrapper">
                      <button class="glow" type="submit">Go to Room 
-                     <a href="<?= Url::toRoute(['room', 'player' => $player, 'myid' => $myid]) ?>">Начать</a>
+                         <!-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>--
+                    </button>
+                 </div>
+            </form>
+-->
+
+            <form id="lobby__form">
+                 <div class="form__field__wrapper">
+                     <label class="font">Твое имя</label>
+                     <input class="font" disabled type="text" name="name" value="<?= $username ?>" />
+                 </div>
+ 
+                 <div class="form__field__wrapper">
+                     <label class="font">Номер задания</label>
+                     <input class="font" disabled type="text" name="room"  value="<?= $taskid ?>" />
+                 </div>
+ 
+                 <div class="form__field__wrapper">
+                     <button class="glow" type="submit">Войти в комнату 
                          <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>-->
                     </button>
                  </div>
             </form>
+
+
+
         </div>
      </main>
     
 </body>
 </html>
+

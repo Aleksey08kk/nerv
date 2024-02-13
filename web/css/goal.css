@@ -111,6 +111,21 @@ a {
     margin: 30px auto;
 }
 
+/*------------------------------------------------- Что где -----------------------------------------------------*/
+.gostr{
+    color: white;
+    font-size: 15px;
+    margin: 10px 0 0 0;
+}
+.imgstr{
+    width: 35px;
+    background-color: white;
+    padding: 2px;
+    border-radius: 50%;
+}
+
+
+
 /*------------------------------------------------- Сообщения -----------------------------------------------------*/
 h2 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
@@ -163,7 +178,7 @@ h2 {
     position: relative;
     margin-bottom: 30px;
     max-width: 93%;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 10px;
 }
 
 
@@ -209,7 +224,7 @@ h2 {
 
 @media(max-width: 600px) {
     .namelogo {
-        margin-left: 70px;
+        margin-left: 80px;
         margin-bottom: -20px;
         color: #000;
         z-index: 10;
@@ -250,7 +265,7 @@ h2 {
     }
 }
 .imgx{
-    width: 30px;
+    width: 15px;
     margin: 5px;
     transition: .5s ease;
 }
@@ -632,4 +647,12 @@ h2 {
 }
 
 
-/*--------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------- Звезды ---------------------------------------------------*/
+.stars{
+    margin: 2px 0 0 10px;
+    display: flex;
+}
+.vote{
+    color: white;
+    margin: 2px 0 0 0;
+}

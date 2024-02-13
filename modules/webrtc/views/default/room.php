@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Url;
 use app\assets\StreamAsset;
+use app\models\Stream;
+
 StreamAsset::register($this);
 /** @var yii\web\View $this */
 $this->title = 'охх Маскара';
@@ -21,19 +23,11 @@ $this->title = 'охх Маскара';
             <button id="members__button">
                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#ede0e0"><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z"/></svg>
             </button>
-            <a href="<?= Url::toRoute(['/site/index']) ?>"><h3 id="logo"><span>MACKAPA</span></h3></a>
+            <a href="<?= Url::toRoute(['/site/index']) ?>"><h3 id="logo"><span class="logomask">MACKAPA</span></h3></a>
        </div>
 
         <div id="nav__links">
             <button id="chat__button"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" fill="#ede0e0" clip-rule="evenodd"><path d="M24 20h-3v4l-5.333-4h-7.667v-4h2v2h6.333l2.667 2v-2h3v-8.001h-2v-2h4v12.001zm-15.667-6l-5.333 4v-4h-3v-14.001l18 .001v14h-9.667zm-6.333-2h3v2l2.667-2h8.333v-10l-14-.001v10.001z"/></svg></button>
-             <a class="nav__link" href="/">
-                <!--Lobby-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ede0e0" viewBox="0 0 24 24"><path d="M20 7.093v-5.093h-3v2.093l3 3zm4 5.907l-12-12-12 12h3v10h7v-5h4v5h7v-10h3zm-5 8h-3v-5h-8v5h-3v-10.26l7-6.912 7 6.99v10.182z"/></svg>
-            </a> 
-            <a class="nav__link" id="create__room__btn" href="">
-               <!-- Create Room -->
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ede0e0" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/></svg>
-            </a>
         </div>
     </header>
 
@@ -43,13 +37,11 @@ $this->title = 'охх Маскара';
             <section id="members__container">
 
             <div id="members__header">
-                <p>Participants</p>
+                <p>Зрители</p>
                 <strong id="members__count">0</strong>
             </div>
 
             <div id="member__list"></div>
-
-
 
             </section>
 
@@ -57,11 +49,8 @@ $this->title = 'охх Маскара';
 
                 <div id="stream__box"></div>
 
-
-                <div id="streams__container"><?= $myid ?></div>
+                <div id="streams__container"></div>
                 
-                
-
                 <div class="stream__actions">
                     <button id="camera-btn" class="active">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 4h-3v-1h3v1zm10.93 0l.812 1.219c.743 1.115 1.987 1.781 3.328 1.781h1.93v13h-20v-13h3.93c1.341 0 2.585-.666 3.328-1.781l.812-1.219h5.86zm1.07-2h-8l-1.406 2.109c-.371.557-.995.891-1.664.891h-5.93v17h24v-17h-3.93c-.669 0-1.293-.334-1.664-.891l-1.406-2.109zm-11 8c0-.552-.447-1-1-1s-1 .448-1 1 .447 1 1 1 1-.448 1-1zm7 0c1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3 1.346-3 3-3zm0-2c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5z"/></svg>
@@ -78,17 +67,20 @@ $this->title = 'охх Маскара';
                 </div>
 
                 <?php if (!Yii::$app->user->isGuest) : ?>
-                    <button class="glow-on-hover" id="join-btn">Join Stream</button>
+                    <button style="font-size: 20px;" class="glow-on-hover" id="join-btn">Включить камеру</button>
                 <?php endif; ?>
                 <?php if (Yii::$app->user->isGuest) : ?>
-                <button class="glow-on-hover" onclick="alert('Войдите чтоб начать свою трансляцию')">Join Stream</button>
+                <button class="glow-on-hover" onclick="alert('Войдите чтоб начать свою трансляцию')">Включить камеру</button>
+                <?php endif; ?>
+                <?php if (Stream::find()->where(['user_id' => Yii::$app->user->identity->id])->andWhere(['task_id' => $_GET['room']])->one()) : ?>
+                    <a onclick="alert('Удалить комнату? Это перенаправит вас на главную страницу')" class="glowdel" href="<?= Url::toRoute(['default/delroom', 'myid' => Yii::$app->user->identity->id, 'taskid' => $_GET['room']]) ?>">Удалить комнату</a>
                 <?php endif; ?>
             </section>
 
             <section id="messages__container">
                 <div id="messages"></div>
                 <form id="message__form">
-                    <input type="text" name="message" placeholder="Send a message...." />
+                    <input type="text" name="message" placeholder="Напишите сообщение...." />
                 </form>
             </section>
 

@@ -3,6 +3,8 @@
 
 
 
+   
+
 document.addEventListener("DOMContentLoaded", hiddenCloseclick());
 document.addEventListener("DOMContentLoaded", hiddenCloseclickk());
 document.getElementById('click-to-hide').addEventListener("click", hiddenCloseclick);

@@ -10,7 +10,9 @@ use Yii;
  * @property int $id
  * @property int|null $user_id
  * @property string|null $proposed_task
- * @property string|null $like
+ * @property string|null $stars
+ * @property string|null $count_vote
+ * @property string|null $task_name
  */
 class TaskFromViewer extends \yii\db\ActiveRecord
 {
@@ -29,7 +31,7 @@ class TaskFromViewer extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['proposed_task'], 'string', 'max' => 255],
+            [['proposed_task', 'task_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,6 +44,7 @@ class TaskFromViewer extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'proposed_task' => 'Proposed Task',
+            'task_name' => 'Task_name',
         ];
     }
 

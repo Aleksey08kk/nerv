@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Coins;
 use app\models\ImageUpLoad;
+use app\models\Like;
 use app\models\Subscription;
+use app\models\Video;
 use yii\web\UploadedFile;
 use app\models\Completing;
 use app\models\Tape;
@@ -11,9 +14,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use Yii;
+use app\models\Stream;
 use app\models\Task;
 use app\models\User;
 use app\models\TaskFromViewer;
+use app\models\TaskSearch;
+use yii\debug\models\search\Debug;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class SiteController extends Controller
 {
@@ -67,10 +75,21 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $tapeModel = Tape::find()->orderBy('RAND()')->all();
-
+        $videoModel = Video::find()->orderBy('RAND()')->all();
+        $streamModel = Stream::find()->all();
+        $myname = "Маскара";
+        if(Yii::$app->user->identity){
+            $myname = Yii::$app->user->identity->name;
+        }
+        $myid = 0;
+        if(Yii::$app->user->identity){
+            $myid = Yii::$app->user->identity->id;
+        }
         return $this->render('index', [
-            'tapeModel' => $tapeModel
+            'streamModel' => $streamModel,
+            'videoModel' => $videoModel,
+            'myname' => $myname,
+            'myid' => $myid
         ]);
     }
 
@@ -78,11 +97,36 @@ class SiteController extends Controller
     public function actionProfile($userId)
     {
         $userModel = User::find()->where(['id' => $userId])->one();
-        $myId = Yii::$app->user->identity->id;
+        $videoModel = Video::find()->where(['user_id' => $userId])->all();
+        $subModel = Subscription::find()->where(['to_whom' => $userId])->one();
+        
+        if(!Yii::$app->user->isGuest){
+            $myId = Yii::$app->user->identity->id;
+        } else {
+            $myId = 0;
+        }
+        if(Subscription::find()->where(['who' => $myId])->andWhere(['to_whom' => $userId])->one()){
+            $subs = true;
+        } else {
+            $subs = false;
+        }
+        
+
+        if($myId == $userId){
+            return $this->redirect(['myprofile']);
+        }
+
+        $subsWho = Subscription::find()->where(['who' => $myId])->all();
+        $countWho = count($subsWho);
+        $subsWhom = Subscription::find()->where(['to_whom' => $myId])->all();
+        $countWhom = count($subsWhom);
 
         return $this->render('profile', [
             'userModel' => $userModel,
-            'myId' => $myId
+            'videoModel' => $videoModel,
+            'countWho' => $countWho,
+            'countWhom' => $countWhom,
+            'subs' => $subs
         ]);
     }
 
@@ -96,28 +140,35 @@ class SiteController extends Controller
         $subsWhom = Subscription::find()->where(['to_whom' => $myId])->all();
         $countWhom = count($subsWhom);
 
+        $videoModel = Video::find()->where(['user_id' => $myId])->all();
+
         return $this->render('myprofile', [
             'userModel' => $userModel,
             'myId' => $myId,
             'countWho' => $countWho,
-            'countWhom' => $countWhom
+            'countWhom' => $countWhom,
+            'videoModel' => $videoModel
         ]);
     }
+
+    
 
     public function actionSubscribe($otherUser)
     {
         $myid = Yii::$app->user->identity->id;
-
-        $userModel = User::find()->where(['id' => $otherUser])->one();
-
         $customer = new Subscription();
         $customer->who = $myid;
         $customer->to_whom = $otherUser;
         $customer->save();
-        return $this->render('profile', [
-            'userModel' => $userModel,
-            'userId' => $otherUser
-        ]);
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    public function actionUnsubs($otherUser)
+    {
+        $myid = Yii::$app->user->identity->id;
+        $subModel = Subscription::find()->where(['who' => $myid])->andWhere(['to_whom' => $otherUser])->one();
+        $subModel->delete();
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionSetImage()
@@ -141,47 +192,40 @@ class SiteController extends Controller
 
 
 
-    public function actionOnetasks($tasknum)
+    public function actionOnetasks($taskid)
     {
-        $tasknumber = $tasknum;
-        //$tapeModel = Tape::find()->orderBy('RAND()')->all();
-        $complModel = Completing::find()->all();
-
-
+        $taskModel = TaskFromViewer::find()->where(['id' => $taskid])->one();
+        $videoModel = Video::find()->where(['task' => $taskModel->proposed_task])->orderBy('RAND()')->all();
+        $myid = 0;
+        if(Yii::$app->user->identity){
+            $myid = Yii::$app->user->identity->id;
+        }
         return $this->render('onetasks', [
-            //'tapeModel' => $tapeModel,
-            'tasknumber' => $tasknumber,
-            'complModel' => $complModel
+            'videoModel' => $videoModel,
+            'myid' => $myid
         ]);
     }
 
 
 
 
-    public function actionRole()
-    {
-        $userId = Yii::$app->user->identity->id;
-        $userModel = User::find()->where(['id' => $userId])->one();
-        if ($userModel->role != 2) {
-            $userModel->role = 3;
-            $userModel->save();
 
-            return $this->redirect('viewer-access');
-        }
+
+    public function actionLike()
+    {
+            $customer = Video::find()->where(['id' => $_POST['id']])->one();
+            $oldLike = $customer->like;
+            $customer->like = $_POST['like'] + $oldLike;
+            $customer->save();
+
+            $likeModel = new Like();
+            $likeModel->video_id = $_POST['id'];
+            $likeModel->user_id = Yii::$app->user->identity->id;
+            $likeModel->save();
+        return true;
     }
 
-
-
-
-    public function actionLike($id)
-    {
-        $customer = TaskFromViewer::find()->where(['id' => $id])->one();
-        $like = $customer->like;
-        $customer->like = $like + 1;
-        $customer->save();
-        return $this->redirect(['viewer']);
-    }
-
+    
 
     public function actionView($id)
     {
@@ -206,13 +250,31 @@ class SiteController extends Controller
 
     public function actionInside()
     {
-        $tapeModel = Tape::find()->orderBy('RAND()')->all();
+        $videoModel = Video::find()->orderBy('RAND()')->all();
         return $this->render('inside', [
-            'tapeModel' => $tapeModel
+            'videoModel' => $videoModel
         ]);
     }
 
-
+    
+    
+    public function actionCoins()
+    {
+        
+        if(!Coins::find()->where(['video_id' => $_POST['videoid']])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one()){
+        $coinsModel = new Coins();
+        $coinsModel->video_id = $_POST['videoid'];
+        $coinsModel->author_video_id = $_POST['authorid'];
+        $coinsModel->who_pay_id = Yii::$app->user->identity->id;
+        $coinsModel->coins = $coinsModel->coins + 1;
+        $coinsModel->save();  
+        } else {
+            $coinsModel = Coins::find()->where(['video_id' => $_POST['videoid']])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one();
+            $coinsModel->coins = $coinsModel->coins + 1;
+            $coinsModel->save(); 
+        }
+        return true;
+    }
 
 
     

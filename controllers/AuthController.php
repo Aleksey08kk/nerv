@@ -22,7 +22,6 @@ class AuthController extends Controller
                 return $this->redirect(['site/index']);
             }
         } 
-        
         return $this->render('login', [
                 'model' => $model,
             ]);
