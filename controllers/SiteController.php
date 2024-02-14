@@ -260,7 +260,10 @@ class SiteController extends Controller
     
     public function actionCoins()
     {
-        
+        $videoModel = Video::find()->where(['id' => $_POST['videoid']])->one();
+        $videoModel->coins = $videoModel->coins + 1;
+        $videoModel->save(); 
+
         if(!Coins::find()->where(['video_id' => $_POST['videoid']])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one()){
         $coinsModel = new Coins();
         $coinsModel->video_id = $_POST['videoid'];

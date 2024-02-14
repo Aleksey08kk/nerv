@@ -49,8 +49,10 @@ $this->title = 'охх Маскара';
             <div id="likebl" class="likebl">
 
 
-
-                <label class="coin" id="<?= $video->id ?>" name="<?= $video->user_id ?>" for="coin"></label>
+                <label class="coinupop" id="coinup"></label>
+                
+                <label onclick="playCoins()" class="coin" id="<?= $video->id ?>" name="<?= $video->user_id ?>" for="coin"></label>
+                <div class="<?= $video->id ?> coincount"><?= $video->coins ?></div>
                 <script>
                     $(document).ready(function() {
                         $("#<?= $video->id ?>").bind("click", function(event) {
@@ -64,11 +66,10 @@ $this->title = 'охх Маскара';
                                     authorid: authorid
                                 },
                                 dataType: 'json',
-                                //success: function(result) {
-                                //if (result) {
-                                //   $(".coin").text(Number($(".coin").text()) + 1);
-                                //} else alert(videoid);
-                                //}
+                                success: function(response) {
+                                    $('.<?= $video->id ?>').load(' .<?= $video->id ?>');
+                                    $('.coinupop').load(' .coinupop');
+                                }
                             });
                         });
                     });
@@ -78,7 +79,7 @@ $this->title = 'охх Маскара';
 
 
 
-
+                <br>
 
 
 
@@ -198,21 +199,4 @@ $this->title = 'охх Маскара';
 </nav>
 <div class="mask-content2"></div>
 
-<!---------------------------------------------- ajax монеты ------------------------------------------------------------>
-
-
-
-
-
-
-
-
-<!--
-<div class="playpouse">
-    <audio id="player" src="sound/play.wav"></audio>
-    <div class="flex cen">
-        <p class="play" onclick="document.getElementById('player').play()">▷</p>
-        <p class="pouse" onclick="document.getElementById('player').pause()">❚❚</p>
-    </div>
-</div>
--->
+<!---------------------------------------------------------------------------------------------------------->

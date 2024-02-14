@@ -1,9 +1,12 @@
 
+function playCoins() {
+  var music = new Audio('/sound/oplata.mp3');
+  music.play();
+  
+  document.getElementById("coinup").className = "coinup";
+}
 
 
-
-
-   
 
 document.addEventListener("DOMContentLoaded", hiddenCloseclick());
 document.addEventListener("DOMContentLoaded", hiddenCloseclickk());
