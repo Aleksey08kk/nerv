@@ -46,24 +46,34 @@ $this->title = 'охх Маскара';
             <!-------------------------------------------------------------------------------------->
 
             <!-----------------------------------------Лайки------------------------------------------------->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
             <div id="likebl" class="likebl">
 
 
                 <label class="coinupop" id="coinup"></label>
-                
-                <label onclick="playCoins()" class="coin" id="<?= $video->id ?>" name="<?= $video->user_id ?>" for="coin"></label>
+                <h3 class="flash"><?= Yii::$app->session->getFlash('error'); ?></h3>
+                <?php if (Yii::$app->user->isGuest) : ?>
+                    <label class="coin"></label>
+                <?php endif; ?>
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    <label onclick="playCoins()" class="coin" id="<?= $video->id ?>" name="<?= $video->user_id ?>" for="coin" data-url="<?= Url::toRoute(["/site/coins"]) ?>"></label>
+                <?php endif; ?>
                 <div class="<?= $video->id ?> coincount"><?= $video->coins ?></div>
+
                 <script>
                     $(document).ready(function() {
                         $("#<?= $video->id ?>").bind("click", function(event) {
                             var videoid = $(this).attr("id");
                             var authorid = $(this).attr("name");
+                            var actionUrl = $(this).attr("data-url");
                             $.ajax({
-                                url: '/site/coins',
+                                url: actionUrl,
                                 method: 'post',
                                 data: {
                                     videoid: videoid,
-                                    authorid: authorid
+                                    authorid: authorid,
+                                    _csrf: yii.getCsrfToken()
                                 },
                                 dataType: 'json',
                                 success: function(response) {
@@ -74,73 +84,43 @@ $this->title = 'охх Маскара';
                         });
                     });
                 </script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 
 
                 <br>
 
 
+                <?php if (Yii::$app->user->isGuest) : ?>
+                    <label class="likee"></label>
+                <?php endif; ?>
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    <label onclick="playLike()" class="<?= $video->id_for_likes ?> likee" id="<?= $video->id ?>" name="<?= $video->user_id ?>" data-url="<?= Url::toRoute(["/site/like"]) ?>"></label>
+                <?php endif; ?>
+                <div class="coincount" id="<?= $video->id_for_likes ?>"><?= $video->like ?></div>
 
-                <?php
-                if (Like::find()->where(['user_id' => $myid])->andWhere(['video_id' => $video->id])->one()) {
-                    echo app\models\StarRating::widget([
-                        'name' => 'rating_21',
-                        'pluginOptions' => [
-                            'disabled' => Yii::$app->user->isGuest ? true : false,
-                            'showClear' => false,
-                            'showCaption' => false,
-                            'stars' => 1,
-                            'filledStar' => '<span class="likeful"></span>',
-                            'emptyStar' => '<span class="likeful"></span>',
-                            'min' => 0,
-                            'max' => 1,
-                            'step' => 1,
-                            'size' => 'xs',
-                            'language' => 'ru',
-                        ]
-                    ]);
-                } else {
-                    echo app\models\StarRating::widget([
-                        'name' => 'rating_21',
-                        'pluginOptions' => [
-                            'disabled' => Yii::$app->user->isGuest ? true : false,
-                            'showClear' => false,
-                            'showCaption' => false,
-                            'stars' => 1,
-                            'filledStar' => '<span class="likeful"></span>',
-                            'emptyStar' => '<span class="likee"></span>',
-                            'min' => 0,
-                            'max' => 1,
-                            'step' => 1,
-                            'size' => 'xs',
-                            'language' => 'ru',
-                        ],
-                        'pluginEvents' => [
-                            'rating:change' => "function(event, value, caption){
-                                    $.ajax({
-                                    url: '/site/like',
-                                    method: 'post',
-                                    data:{
-                                    like:value,
-                                    id: '$video->id',
-                                    },
-                                    dataType:'json',
-                                    success:function(data){
-                                    //console.log(data);
-                                    //$('#likecount').load('/site/index #likecount');
-                                    }
-                                    
-                                    });
-                                    }"
-                        ],
-                    ]);
-                }
-                ?>
-
-                <div id="likecount" class="likecount"><?= $video->like ?></div>
+                <script>
+                    $(document).ready(function() {
+                        $(".<?= $video->id_for_likes ?>").bind("click", function(event) {
+                            var videoid = $(this).attr("id");
+                            var authorid = $(this).attr("name");
+                            var actionUrl = $(this).attr("data-url");
+                            $.ajax({
+                                url: actionUrl,
+                                method: 'post',
+                                data: {
+                                    videoid: videoid,
+                                    authorid: authorid,
+                                    _csrf: yii.getCsrfToken()
+                                },
+                                dataType: 'json',
+                                success: function(response) {
+                                    $('#<?= $video->id_for_likes ?>').load(' #<?= $video->id_for_likes ?>');
+                                }
+                            });
+                        });
+                    });
+                </script>
             </div>
+
             <div class="name-and-task">
                 <a href="<?= Url::toRoute(['site/profile', 'userId' => $video->user_id]) ?>" class="down" title="Нажмите чтоб открыть страницу игрока">
                     <img class="img-ava" src="<?= User::find()->where(['id' => $video->user_id])->one()->getImage(); ?>" alt="info">
@@ -157,7 +137,7 @@ $this->title = 'охх Маскара';
 </div>
 
 
-<!------------------------------------ выдвигающаяся панель ------------------------------------------------>
+<!------------------------------------ выдвигающаяся панель Прямой эфир -------------------------------------------->
 <nav class="nav">
     <label id="click-to-hide" for="nav-toggle" class="nav-toggle" onclick></label>
     <h2 class="logo">
@@ -166,8 +146,8 @@ $this->title = 'охх Маскара';
     <ul>
         <li>
             <?php foreach ($streamModel as $room) : ?>
-                <a href="<?= Url::toRoute(['/webrtc/default/lobbyy', 'taskid' => $room->task_id, 'username' => $myname]) ?>"><?= TaskFromViewer::find()->where(['id' => $room->task_id])->one()->task_name ?></a>
-            <?php endforeach; ?>
+                <a href="<?= Url::toRoute(['/webrtc/default/lobbyy', 'taskid' => $room->task_id, 'username' => $myname, 'author' => $room->user_id]) ?>"><?= TaskFromViewer::find()->where(['id' => $room->task_id])->one()->task_name ?></a>
+             <?php endforeach; ?>
 
             <!--<li><a style="font-family: 'BlueCurve';" href="<?= Url::toRoute(['/webrtc/default/index']) ?>">Сейчас онлайн</a>-->
             <!-- <li><a href="#3">Три</a>
@@ -181,7 +161,7 @@ $this->title = 'охх Маскара';
 <div class="mask-content"></div>
 
 
-<!------------------------------------ выдвигающаяся панель поиск ----------------------------------------------->
+<!------------------------------------ выдвигающаяся панель Кто ты? ----------------------------------------------->
 
 <nav class="nav2">
     <label id="hidden-element" for="nav-toggle2" class="nav-toggle2" onclick></label>

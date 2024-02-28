@@ -15,6 +15,7 @@ use Yii;
  * @property int|null $like
  * @property int|null $coins
  * @property string|null $date
+ * @property string|null $id_for_likes
  */
 class Video extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class Video extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'like', 'coins'], 'integer'],
+            [['user_id', 'like', 'coins', 'id_for_likes'], 'integer'],
             [['description'], 'string'],
             [['date'], 'safe'],
             [['video', 'task'], 'string', 'max' => 255],
@@ -53,6 +54,7 @@ class Video extends \yii\db\ActiveRecord
             'like' => 'Like',
             'coins' => 'Coins',
             'date' => 'Date',
+            'id_for_likes' => 'id_for_likes'
         ];
     }
 
@@ -63,6 +65,11 @@ class Video extends \yii\db\ActiveRecord
         $this->task = $modelTask->proposed_task;
         $this->user_id = $myid;
         $this->video = $filename;
+        //if(Video::find()->orderBy('id DESC')->one()){
+            $videoModel = Video::find()->orderBy('id DESC')->one();
+            $this->id_for_likes = $videoModel->id_for_likes +1;
+        //}
+        
         return $this->save(false);
     }
 

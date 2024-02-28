@@ -86,7 +86,7 @@ a.desc:after {
 :root {
     --scrollbarBg: rgba(2, 142, 74, 1);
     --scrollbarThumb: rgb(255, 255, 255);
-    --scrollbarWidth: 6px;
+    --scrollbarWidth: 1px;
     --scrollbarBorder: 1px solid var(--scrollbarBg);
     --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
   }

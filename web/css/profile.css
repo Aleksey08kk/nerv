@@ -201,7 +201,7 @@ body {
   margin: 50px auto 0 auto;
   color: white;
   font-family: 'BlueCurve';
-  line-height: 40px;
+  line-height: 30px;
   display: inline-block;
   text-align: left;
 }
@@ -554,6 +554,7 @@ header>div:nth-child(10) {
 }
 
 .comment {
+  z-index: 999;
   width: 400px;
   position: absolute;
   right: 0;
@@ -1042,22 +1043,36 @@ header>div:nth-child(10) {
   list-style: none;
   flex: 0 0 40%;
   border: white solid 1px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .vivi {
   width: 170px;
+  height: 300px;
 }
+
 
 .player-task {
   font-size: 15px;
   color: white;
   text-decoration: none;
   font-weight: 100;
+  text-align: center;
 }
 
-
-
+.coifrviw{
+  display: flex;
+}
+.strcoin{
+  font-size: 15px;
+  font-weight: 100;
+}
+.imgcoin{
+  width: 20px;
+}
+.partlikcoi{
+  margin: 0 auto;
+}
 
 
 
@@ -1232,3 +1247,4 @@ header>div:nth-child(10) {
 	  padding: 15px 20px 0 20px;
 	}
 }
+

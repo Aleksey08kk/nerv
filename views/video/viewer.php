@@ -26,97 +26,46 @@ $this->title = 'охх Маскара';
                     <h5 class="namelogo"><?= User::find()->where(['id' => $task->user_id])->one()->name; ?></h5>
                     <li class="message left glow-task">
                         <img class="logo" src="<?= User::find()->where(['id' => $task->user_id])->one()->getImage(); ?>" alt="аватарка">
+                        <p class="tel"><?= $task->proposed_task ?></p>
                         <div style="display: flex;">
-                            <p><?= $task->proposed_task ?></p>
+                        <p class="pc"><?= $task->proposed_task ?></p>   
+
+                            <!-----------------------------------------  Да - нет  ------------------------------------------------->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <label class="coin" id="<?= $task->id ?>" data-url="<?= Url::toRoute(["/video/yes"]) ?>"></label>
+                            <div class="<?= $task->id ?> coincount"><?= $task->stars ?></div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#<?= $task->id ?>").bind("click", function(event) {
+                                        var taskid = $(this).attr("id");
+                                        var actionUrl = $(this).attr("data-url");
+                                        $.ajax({
+                                            url: actionUrl,
+                                            method: 'post',
+                                            data: {
+                                                taskid: taskid,
+                                                _csrf: yii.getCsrfToken()
+                                            },
+                                            dataType: 'json',
+                                            success: function(response) {
+                                                $('.<?= $task->id ?>').load(' .<?= $task->id ?>');
+                                                //$('.coinupop').load(' .coinupop');
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+
                             <?php if ($admin || $userId == $task->user_id) : ?>
                                 <a class="del" href="<?= Url::toRoute(['video/delete', 'id' => $task->id]) ?>"><img class="imgx" src="/img/delete.svg"></a>
                             <?php endif; ?>
                         </div>
                     </li>
-
-
-                    <!-----------------------------------------звезды------------------------------------------------->
-                    <div class="stars">
-                        <?php
-                        if (is_null($task->stars)) {
-                            $stars = 0;
-                        } else {
-                            $stars = $task->stars / $task->count_vote;
-                        }
-                        if ($task->stars > 0) {
-                            echo app\models\StarRating::widget([
-                                'name' => 'rating_21',
-                                'value' => $stars,
-                                'pluginOptions' => [
-                                    'disabled' => (bool)Yii::$app->user->isGuest,
-                                    'showClear' => false,
-                                    'showCaption' => false,
-                                    'min' => 0,
-                                    'max' => 5,
-                                    'step' => 1,
-                                    'size' => 'xs',
-                                    'language' => 'ru',
-                                ],
-                                'pluginEvents' => [
-                                    'rating:change' => "function(event, value, caption){
-                                    $.ajax({
-                                    url: '/video/stars',
-                                    method: 'post',
-                                    data:{
-                                    stars:value,
-                                    id: '$task->id',
-                                    coutVote: 1,
-                                    },
-                                    dataType:'json',
-                                    success:function(data){
-                                    //console.log(data);
-                                    $('message').html(data);
-                                    }
-                                    });
-                                    }"
-                                ],
-                            ]);
-                        } else {
-                            echo app\models\StarRating::widget([
-                                'name' => 'rating_21',
-                                'pluginOptions' => [
-                                    'disabled' => Yii::$app->user->isGuest ? true : false,
-                                    'showClear' => false,
-                                    'showCaption' => false,
-                                    'min' => 0,
-                                    'max' => 5,
-                                    'step' => 1,
-                                    'size' => 'xs',
-                                    'language' => 'ru',
-                                ],
-                                'pluginEvents' => [
-                                    'rating:change' => "function(event, value, caption){
-                                    $.ajax({
-                                    url: '/video/stars',
-                                    method: 'post',
-                                    data:{
-                                    stars:value,
-                                    id: '$task->id',
-                                    coutVote: 1,
-                                    },
-                                    dataType:'json',
-                                    success:function(data){
-                                    //console.log(data);
-                                    $('message').html(data);
-                                    }
-                                    
-                                    });
-                                    }"
-                                ],
-                            ]);
-                        }
-                        ?>
-                        <p class="vote"><?= $task->count_vote ?></p>
-                    </div>
-
                 <?php endforeach; ?>
             </ul>
         </div>
+
+
 
         <div class="comment">
             <?php $form = ActiveForm::begin(); ?>
@@ -133,13 +82,7 @@ $this->title = 'охх Маскара';
 
     </div>
 
-
-<br><br><br>
-
-
-
-
-
+    <br>
 
 
 

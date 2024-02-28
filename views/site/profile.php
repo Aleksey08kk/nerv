@@ -54,6 +54,17 @@ $this->title = 'охх Маскара';
                     <span class="link-task" title="Нажмите чтоб смотреть других игроков выполнивших это задание">
                         <h1 class="player-task"><?= $video->task ?></h1>
                     </span>
+                    <span class="coifrviw">
+                        <div class="partlikcoi">
+                        <img class="imgcoin" src="/img/coin.svg" alt="">
+                        <h1 class="strcoin"><?= $video->coins ?></h1>
+                        </div>
+                        <h1 class="strcoin"> | </h1>
+                        <div class="partlikcoi">
+                        <img class="imgcoin" src="/img/like.svg" alt="">
+                        <h1 class="strcoin"><?= $video->like ?></h1>
+                        </div>
+                    </span>
                 </div>
             </div>
         <?php endforeach; ?>

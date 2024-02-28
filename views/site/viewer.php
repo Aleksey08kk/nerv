@@ -55,7 +55,7 @@ $this->title = 'Нерв';
 
     <div class="task-from" id="task">
         <h1 class="tac">Задания от зрителей</h1>
-        <div class="listtask scroll" id="scrollTop">
+        <div class="listtask" id="scrollTop">
             <?php foreach ($allTasks as $oneTask) : ?>
                 <div class="flex str">
                     <h5 class="taskviewer"><?= $oneTask->proposed_task ?></h5>

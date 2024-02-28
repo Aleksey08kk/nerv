@@ -31,11 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            //'email:email',
-            //'password',
+            'email:email',
+            'password',
             //'isAdmin',
             //'userPhoto',
-            'role',
+            //'role',
             'money',
             [
                 'class' => ActionColumn::className(),

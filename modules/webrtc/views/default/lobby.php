@@ -67,16 +67,17 @@ $this->title = 'охх Маскара';
                      <label class="font">Номер задания</label>
                      <input class="font" disabled type="text" name="room"  value="<?= $taskid ?>" />
                  </div>
- 
+
+                 <input hidden name="author"  value="<?= $author ?>" />
+
                  <div class="form__field__wrapper">
                      <button class="glow" type="submit">Войти в комнату 
-                         <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>-->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
                     </button>
                  </div>
             </form>
 
-
-
+            
         </div>
      </main>
     

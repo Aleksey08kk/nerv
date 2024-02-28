@@ -95,6 +95,9 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $userModel = User::find()->where(['id' => $id])->one();
+            $userModel->money = 50;
+            $userModel->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

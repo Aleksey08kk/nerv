@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\TaskFromViewer;
 use app\models\UploadImage;
+use app\models\User;
 use app\models\Video;
 use Yii;
 use yii\web\UploadedFile;
@@ -32,7 +33,7 @@ class VideoController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = $userId;
             $model->save();
-            //return $this->redirect(['viewer']);
+            return Yii::$app->controller->refresh();
         }
 
         $tasks = TaskFromViewer::find()->all();
@@ -114,14 +115,11 @@ class VideoController extends \yii\web\Controller
         return $this->render('image', ['model' => $model]);
     }
 
-    public function actionStars()
+    public function actionYes()
     {
-        $model = TaskFromViewer::find()->where(['id' => $_POST['id']])->one();
-        $oldCountVote = $model->count_vote; 
-        $oldStars = $model->stars;
-        $model->count_vote = $_POST['coutVote'] + $oldCountVote;
-        $model->stars = $_POST['stars'] + $oldStars;
-        $model->save();
+        $taskModel = TaskFromViewer::find()->where(['id' => $_POST['taskid']])->one();
+        $taskModel->stars = $taskModel->stars + 1;
+        $taskModel->save();
 
         return true;
     }

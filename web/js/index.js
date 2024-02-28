@@ -1,10 +1,23 @@
 
+
+
+
+
+
+
+
 function playCoins() {
-  var music = new Audio('/sound/oplata.mp3');
+  var music = new Audio('/sound/coin.mp3');
   music.play();
   
   document.getElementById("coinup").className = "coinup";
 }
+
+function playLike() {
+    var music = new Audio('/sound/button.mp3');
+    music.play();
+    
+  }
 
 
 

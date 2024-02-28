@@ -2,6 +2,7 @@
 
 namespace app\modules\webrtc\controllers;
 
+use app\models\CoinsStream;
 use app\models\Stream;
 use app\models\Task;
 use yii\web\Controller;
@@ -40,9 +41,16 @@ class DefaultController extends Controller
 */
     public function actionRoom()
     {
-        return $this->render('room');
+        $coinsStreamModel = CoinsStream::find()->where(['task_id' => $_GET['room']])->andWhere(['author_stream_id' => $_GET['author']])->one();
+        $streamModel = Stream::find()->where(['id' => $_GET['room']])->one();
+        return $this->render('room', [
+            'streamModel' => $streamModel,
+            'coinsStreamModel' => $coinsStreamModel
+        ]);
     }
-    public function actionLobby($taskid, $myid) 
+
+    
+    public function actionLobby($taskid, $myid, $author) 
     {
         if(!Stream::find()->where(['user_id' => $myid])->andWhere(['task_id' => $taskid])->one()){
             $customer = new Stream();
@@ -59,24 +67,47 @@ class DefaultController extends Controller
             'myid' => $myid,
             'userModel' => $userModel,
             'taskModel' => $taskModel,
-            'username' => $username
+            'username' => $username,
+            'author' => $author
         ]);
     }
 
-    public function actionLobbyy($taskid, $username) //функция вызывается из списка стримов
+    public function actionLobbyy($taskid, $username, $author) //функция вызывается из списка стримов
     {
         return $this->render('lobby', [
             'taskid' => $taskid,
-            'username' => $username
+            'username' => $username,
+            'author' => $author
         ]);
     }
 
 
-    public function actionTest($id)
+    public function actionCoins()
     {
-        return $this->render('test', [
-            'id' => $id
-        ]);
+        $howMoney = 50;
+        $task = $_POST['roomid'];
+        $author = $_POST['author'];
+        $whoPay = Yii::$app->user->identity->id;
+
+        $userPayModel = User::find()->where(['id' => $whoPay])->one();
+        if($userPayModel->money > $howMoney){
+            $userPayModel->money = $userPayModel->money - $howMoney;
+            $userPayModel->save();
+        
+        if(!CoinsStream::find()->where(['task_id' => $task])->andWhere(['author_stream_id' =>  $author])->one()){
+            $coinsModel = new CoinsStream();
+            $coinsModel->task_id = $task;
+            $coinsModel->author_stream_id = $author;
+            $coinsModel->who_pay_id = Yii::$app->user->identity->id;
+            $coinsModel->coins = $howMoney;
+            $coinsModel->save();
+        } else {
+            $coinsModel = CoinsStream::find()->where(['task_id' => $task])->andWhere(['author_stream_id' =>  $author])->one();
+            $coinsModel->coins = $coinsModel->coins + $howMoney;
+            $coinsModel->save(); 
+        }
+    }
+        return true;
     }
 
     public function actionDelroom($myid, $taskid)

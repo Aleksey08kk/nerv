@@ -12,14 +12,16 @@ class UploadImage extends Model{
     public function rules(){
         return[
             [['image'], 'required'],
-            [['image'], 'file', 'extensions' => 'png, jpg, mp4, MOV, AVI, MPEG-4'],
+            [['image'], 'file', 'extensions' => 'png, jpg, mp4, MP4, MOV, AVI, MPEG-4'],
         ];
     }
 
     
 
     public function uploadFile($file){
-
+        $userModel = User::find()->where(['id' => Yii::$app->user->identity->id])->one();
+        $userModel->cout_task = $userModel->cout_task + 1;
+        $userModel->save();
         $this->image = $file;
         return $this->saveImage();
     }

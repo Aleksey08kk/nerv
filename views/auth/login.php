@@ -27,7 +27,7 @@ $this->title = 'Вход';
 
     </div>
     <?= Html::submitButton('🚪', ['class' => 'glow-on-hover', 'name' => 'login-button']) ?>
-
+    <?= $form->field($model, 'rememberMe')->checkbox() ?>
     <?php ActiveForm::end(); ?>
 
     

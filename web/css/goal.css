@@ -137,20 +137,20 @@ h2 {
 
 .chatul {
     z-index: 10;
-    height: 470px;
-    overflow: auto;
+    height: 400px;
     padding: 20px 0;
+    overflow: auto;
 }
 
-@media(max-width: 600px) {
+
     #chatul::-webkit-scrollbar {
         width: 0;
     }
-}
+
 
 .chatulp {
     z-index: 10;
-    height: 550px;
+    height: 450px;
     overflow: auto;
     padding: 20px 0;
 }
@@ -252,16 +252,17 @@ h2 {
 
 .del {
     width: 45px;
+    margin: 0 10px 0 0;
 }
 
+
 .uplostr{
-    display: grid;
-    margin: -10px 10px -8px 15px;
-    height: 90px;
+    display: flex;
+    margin: -10px 0 -8px 10px;
 }
 @media(max-width: 600px) {
     .uplostr {
-        margin: -28px 3px -8px 5px;
+        margin: 0 0 0 10px;
     }
 }
 .imgx{
@@ -302,7 +303,7 @@ h2 {
     z-index: 0;
     border-radius: 10px;
     font-size: 20px;
-    text-align: center;
+    padding: 0 0 0 30px;
 }
 
 .glow-on-hover:before {
@@ -647,12 +648,131 @@ h2 {
 }
 
 
-/*-------------------------------------------- Звезды ---------------------------------------------------*/
-.stars{
-    margin: 2px 0 0 10px;
-    display: flex;
-}
-.vote{
+/*-------------------------------------------- Да Нет ---------------------------------------------------*/
+.likebl{
+    display: grid;
+  }
+  
+  
+  .likecount{
     color: white;
-    margin: 2px 0 0 0;
+    margin: 0 0 0 4px;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+    font-size: 15px;
+  }
+  
+  .likee:after {
+    content: ' ';
+    display: block;
+    background: url('../img/like.svg') no-repeat;
+    background-size: cover;
+    height: 20px;
+    width: 22px;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+  }
+  .likeful:after {
+    content: ' ';
+    display: block;
+    background: url('../img/likered.svg') no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 22px;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+    z-index: 999;
+  }
+  
+  
+  
+  
+  .coin {
+    text-shadow: 1px 1px 2px black;
+    color: #dadada;
+    cursor: pointer;
+    z-index: 999;
+    width: 25px;
+    margin: 0 0 0 15px;
+  }
+  
+  .coin:after {
+    content: '';
+    display: block;
+    background: url('../img/fire.svg') no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    text-decoration: none;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+  }
+  .coincount{
+    width: 25px;
+    color: white;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+    font-size: 15px;
+    text-align: center;
+    margin:7px 0 0 0;
+  }
+  
+.pc{
+display: block;
+}
+@media(max-width: 600px) {
+    .pc {
+        display: none;
+    }
+}
+.tel{
+display: none;
+}
+@media(max-width: 600px) {
+    .tel {
+        display: block;
+    }
+}
+
+.coinplayer {
+    text-shadow: 1px 1px 2px black;
+    color: #dadada;
+    cursor: pointer;
+    z-index: 999;
+    width: 25px;
+    margin: 0 0 0 15px;
+  }
+  @media(max-width: 600px) {
+    .coinplayer {
+        margin: 7px 0 0 15px;
+    }
+}
+  .coinplayer:after {
+    content: '';
+    display: block;
+    background: url('../img/fire.svg') no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    text-decoration: none;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+  }
+  .coincountplayer{
+    width: 25px;
+    color: white;
+    -webkit-filter: drop-shadow( 1px 1px 2px black);
+    filter: drop-shadow( 1px 1px 2px black);
+    font-size: 15px;
+    text-align: center;
+    margin:7px 0 0 0;
+  }
+  @media(max-width: 600px) {
+    .coincountplayer {
+        margin: 10px 0 0 0;
+    }
 }

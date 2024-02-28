@@ -24,65 +24,80 @@ $this->title = 'охх Маскара';
                 <source src="<?= $video->getImage() ?>#t=0.1" />
             </video>
             <!-----------------------------------------Лайки------------------------------------------------->
-            <div class="likebl">
-       
-                <?php
-                
-                if(Like::find()->where(['user_id' => $myid])->andWhere(['video_id' => $video->id])->one()){
-                    echo app\models\StarRating::widget([
-                        'name' => 'rating_21',
-                        'pluginOptions' => [
-                            'disabled' => Yii::$app->user->isGuest ? true : false,
-                            'showClear' => false,
-                            'showCaption' => false,
-                            'stars' => 1,
-                            'filledStar' => '<span class="likeful"></span>',
-                            'emptyStar' => '<span class="likeful"></span>',
-                            'min' => 0,
-                            'max' => 1,
-                            'step' => 1,
-                            'size' => 'xs',
-                            'language' => 'ru',
-                        ]
-                    ]);
-                } else {
-                echo app\models\StarRating::widget([
-                    'name' => 'rating_21',
-                    'pluginOptions' => [
-                        'disabled' => Yii::$app->user->isGuest ? true : false,
-                        'showClear' => false,
-                        'showCaption' => false,
-                        'stars' => 1,
-                        'filledStar' => '<span class="likeful"></span>',
-                        'emptyStar' => '<span class="likee"></span>',
-                        'min' => 0,
-                        'max' => 1,
-                        'step' => 1,
-                        'size' => 'xs',
-                        'language' => 'ru',
-                    ],
-                    'pluginEvents' => [
-                        'rating:change' => "function(event, value, caption){
-                                    $.ajax({
-                                    url: '/site/like',
+            <div class="likeblone">
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <div id="likebl" class="likebl">
+
+
+                    <label class="coinupop" id="coinup"></label>
+                    <?php if (Yii::$app->user->isGuest) : ?>
+                        <label class="coin"></label>
+                    <?php endif; ?>
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <label onclick="playCoins()" class="coin" id="<?= $video->id ?>" name="<?= $video->user_id ?>" for="coin" data-url="<?= Url::toRoute(["/site/coins"]) ?>"></label>
+                    <?php endif; ?>
+                    <div class="<?= $video->id ?> coincount"><?= $video->coins ?></div>
+                    <script>
+                        $(document).ready(function() {
+                            $("#<?= $video->id ?>").bind("click", function(event) {
+                                var videoid = $(this).attr("id");
+                                var authorid = $(this).attr("name");
+                                var actionUrl = $(this).attr("data-url");
+                                $.ajax({
+                                    url: actionUrl,
                                     method: 'post',
-                                    data:{
-                                    like:value,
-                                    id: '$video->id',
+                                    data: {
+                                        videoid: videoid,
+                                        authorid: authorid,
+                                        _csrf: yii.getCsrfToken()
                                     },
-                                    dataType:'json',
-                                    success:function(data){
-                                    //console.log(data);
-                                    $('message').html(data);
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        $('.<?= $video->id ?>').load(' .<?= $video->id ?>');
+                                        $('.coinupop').load(' .coinupop');
                                     }
-                                    
-                                    });
-                                    }"
-                    ],
-                ]);
-            }
-                ?>
-                <span class="likecount"><?= $video->like ?></span>
+                                });
+                            });
+                        });
+                    </script>
+
+
+                    <br>
+
+
+                    <?php if (Yii::$app->user->isGuest) : ?>
+                        <label class="likee"></label>
+                    <?php endif; ?>
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <label onclick="playLike()" class="<?= $video->id_for_likes ?> likee" id="<?= $video->id ?>" name="<?= $video->user_id ?>" data-url="<?= Url::toRoute(["/site/like"]) ?>"></label>
+                    <?php endif; ?>
+                    <div class="coincount" id="<?= $video->id_for_likes ?>"><?= $video->like ?></div>
+                    <script>
+                        $(document).ready(function() {
+                            $(".<?= $video->id_for_likes ?>").bind("click", function(event) {
+                                var videoid = $(this).attr("id");
+                                var authorid = $(this).attr("name");
+                                var actionUrl = $(this).attr("data-url");
+                                $.ajax({
+                                    url: actionUrl,
+                                    method: 'post',
+                                    data: {
+                                        videoid: videoid,
+                                        authorid: authorid,
+                                        _csrf: yii.getCsrfToken()
+                                    },
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        $('#<?= $video->id_for_likes ?>').load(' #<?= $video->id_for_likes ?>');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+
             </div>
             <div class="name-and-task">
                 <a href="<?= Url::toRoute(['site/profile', 'userId' => $video->user_id]) ?>" class="down" title="Нажмите чтоб открыть страницу игрока">
@@ -96,4 +111,3 @@ $this->title = 'охх Маскара';
         <?php endforeach; ?>
     </div>
 </div>
-

@@ -20,14 +20,10 @@ use app\models\User;
 use app\models\TaskFromViewer;
 use app\models\TaskSearch;
 use yii\debug\models\search\Debug;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public function behaviors()
     {
         return [
@@ -85,13 +81,35 @@ class SiteController extends Controller
         if(Yii::$app->user->identity){
             $myid = Yii::$app->user->identity->id;
         }
-        return $this->render('index', [
+        return $this->render('inside', [
             'streamModel' => $streamModel,
             'videoModel' => $videoModel,
             'myname' => $myname,
             'myid' => $myid
         ]);
     }
+
+    public function actionInside()
+    {
+        $videoModel = Video::find()->orderBy('RAND()')->all();
+        $streamModel = Stream::find()->all();
+        $myname = "Маскара";
+        if(Yii::$app->user->identity){
+            $myname = Yii::$app->user->identity->name;
+        }
+        $myid = 0;
+        if(Yii::$app->user->identity){
+            $myid = Yii::$app->user->identity->id;
+        }
+        return $this->render('inside', [
+            'streamModel' => $streamModel,
+            'videoModel' => $videoModel,
+            'myname' => $myname,
+            'myid' => $myid
+        ]);
+    }
+
+    
 
 
     public function actionProfile($userId)
@@ -213,15 +231,17 @@ class SiteController extends Controller
 
     public function actionLike()
     {
-            $customer = Video::find()->where(['id' => $_POST['id']])->one();
-            $oldLike = $customer->like;
-            $customer->like = $_POST['like'] + $oldLike;
+        if(!Like::find()->where(['video_id' => $_POST['videoid']])->andWhere(['user_id' => Yii::$app->user->identity->id])->one()){
+            $customer = Video::find()->where(['id' => $_POST['videoid']])->one();
+            $customer->like = $customer->like + 1;
             $customer->save();
-
+        
             $likeModel = new Like();
-            $likeModel->video_id = $_POST['id'];
+            $likeModel->video_id = $_POST['videoid'];
             $likeModel->user_id = Yii::$app->user->identity->id;
             $likeModel->save();
+        }
+            
         return true;
     }
 
@@ -234,48 +254,62 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+
     public function actionUpdate($id)
     {
         $model = User::find()->where(['id' => $id])->one();
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['myprofile']);
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
     }
 
 
-    public function actionInside()
-    {
-        $videoModel = Video::find()->orderBy('RAND()')->all();
-        return $this->render('inside', [
-            'videoModel' => $videoModel
-        ]);
-    }
+    
 
     
     
     public function actionCoins()
     {
-        $videoModel = Video::find()->where(['id' => $_POST['videoid']])->one();
+        $videoId = $_POST['videoid'];
+        $authorVideoId = $_POST['authorid'];
+        $whoPay = Yii::$app->user->identity->id;
+
+        $userPayModel = User::find()->where(['id' => $whoPay])->one();
+        if($userPayModel->money == 0){
+            Yii::$app->getSession()->setFlash('error', '✖');
+            return $this->redirect('index');
+        } else {
+            $userPayModel->money = $userPayModel->money - 1;
+        }
+        $userPayModel->save();
+
+        $videoModel = Video::find()->where(['id' => $videoId])->one();
         $videoModel->coins = $videoModel->coins + 1;
         $videoModel->save(); 
 
-        if(!Coins::find()->where(['video_id' => $_POST['videoid']])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one()){
+        if(!Coins::find()->where(['video_id' => $videoId])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one()){
         $coinsModel = new Coins();
-        $coinsModel->video_id = $_POST['videoid'];
-        $coinsModel->author_video_id = $_POST['authorid'];
+        $coinsModel->video_id = $videoId;
+        $coinsModel->author_video_id = $authorVideoId;
         $coinsModel->who_pay_id = Yii::$app->user->identity->id;
         $coinsModel->coins = $coinsModel->coins + 1;
         $coinsModel->save();  
         } else {
-            $coinsModel = Coins::find()->where(['video_id' => $_POST['videoid']])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one();
+            $coinsModel = Coins::find()->where(['video_id' => $videoId])->andWhere(['who_pay_id' => Yii::$app->user->identity->id])->one();
             $coinsModel->coins = $coinsModel->coins + 1;
             $coinsModel->save(); 
         }
+
+        if(User::find()->where(['id' => $authorVideoId])->one()){
+            $userModel = User::find()->where(['id' => $authorVideoId])->one();
+            $userModel->coins_from_viewers = $userModel->coins_from_viewers + 1;
+            $userModel->save(); 
+        }
+        
         return true;
     }
 

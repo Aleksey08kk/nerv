@@ -24,14 +24,17 @@ ProfileAsset::register($this);
             'attributes' => [
                 'id',
                 'name',
+                'description',
                 //'email:email',
                 //'password',
                 //'isAdmin',
                 //'userPhoto',
                 //'role',
                 'money',
+                'coins_from_viewers',
                 'cout_task',
-                'description',
+                
+                
             ],
         ]) ?>
 
@@ -44,10 +47,14 @@ ProfileAsset::register($this);
             <div class="modal">
                 <div class="modal-wrap">
                     <img src="/img/pay.jpg" alt="">
-                    <p class="insidemodel">Вощем сам закинь бабла на сайт через спб или переводом на номер: такой то такой то. Не забудь указать свой ID. Твой ID написан на этой странице</p>
+                    <p class="insidemodel">Пополнение баланса осуществляется переводом на сбер 2202 2036 5172 8125 <br>. При переводе в сообщении укажите свой ID. <br>ID можно найти в своем профиле на сайте.<br> Через 5-10 минут средства зачислятся на счет вашего профиля. </p>
+                    <p class="insidemodel">Пополнение может быть на суммы: 50р. 100р. 500р. или на ваше усмотрение.</p>
                 </div>
             </div>
-        
+
+            
+            <h3 class="insidemodel">Вывод средств осуществляется от 50р</h3>
+            
 
         <br><br><br><br><br>
         <div>

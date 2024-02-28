@@ -140,6 +140,8 @@ body {
   margin: -43px auto 0 auto;
   border: 1px solid rgba(53, 53, 53, 0.507);
   border-radius: 10px;
+  width: 360px;
+  height: 620px;
 }
 @media(max-width: 500px){
   .block-video{
@@ -1129,7 +1131,11 @@ body {
 /*------------------------------------------------- Лайки -----------------------------------------------------*/
 /*------------------------------------------------- Лайки -----------------------------------------------------*/
 .likebl{
-  margin: -90% 0 90% 10px;
+  margin: -350px 0 350px 10px;
+  display: grid;
+}
+.likeblone{
+  margin: -50px 0 50px 10px;
   display: grid;
 }
 
@@ -1144,10 +1150,10 @@ body {
 .likee:after {
   content: ' ';
   display: block;
-  background: url('../img/like.svg') no-repeat;
-  background-size: contain;
-  height: 20px;
-  width: 22px;
+  background: url('../img/fire.svg') no-repeat;
+  background-size: cover;
+  height: 25px;
+  width: 25px;
   cursor: pointer;
   text-decoration: none;
   -webkit-filter: drop-shadow( 1px 1px 2px black);
@@ -1156,7 +1162,7 @@ body {
 .likeful:after {
   content: ' ';
   display: block;
-  background: url('../img/likered.svg') no-repeat;
+  background: url('../img/fire.svg') no-repeat;
   background-size: contain;
   height: 20px;
   width: 22px;
@@ -1175,6 +1181,7 @@ body {
   color: #dadada;
   cursor: pointer;
   z-index: 999;
+  width: 25px;
 }
 
 .coin:after {
@@ -1189,11 +1196,12 @@ body {
   filter: drop-shadow( 1px 1px 2px black);
 }
 .coincount{
+  width: 25px;
   color: white;
-  margin: 0 0 0 2px;
   -webkit-filter: drop-shadow( 1px 1px 2px black);
   filter: drop-shadow( 1px 1px 2px black);
   font-size: 15px;
+  text-align: center;
 }
 
 
@@ -1223,3 +1231,24 @@ body {
   0% {transform: translateY(-150%);}
   100% {transform: translateY(0);}
 }
+
+.flash{
+  color: white;
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
